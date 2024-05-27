@@ -1,12 +1,14 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
+import model.*;
+
 import java.sql.SQLException;
 
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        DataBaseConnection conn = new DataBaseConnection(5432, "postgres", "2hY76r", "trycatchauto");
+        DataBaseConnection conn = new DataBaseConnection(5432, "postgres", "Strz3l3czhr-SQL", "trycatchauto");
         //        AddPassenger();
 //        AddDriverWithCar(
 //                "TEST_NAME",
@@ -34,46 +36,46 @@ public class Main {
 //        AddApplication();
 
 //        var result = conn.SelectBasicDataDriversV2();
-//        var array = DataBaseConnection.ConvertToStringStream.BasicDriverDataToStringStreamV2(result);
+//        var array = model.DataBaseConnection.ConvertToStringStream.BasicDriverDataToStringStreamV2(result);
 //        array.forEach(System.out::println);
 
 //        var result = conn.SelectBasicDataDrivers();
-//        var array = DataBaseConnection.ConvertToStringStream.BasicDriverDataToStringStream(result);
+//        var array = model.DataBaseConnection.ConvertToStringStream.BasicDriverDataToStringStream(result);
 //        array.forEach(System.out::println);
 //        System.out.println(array.get(3));
 
 
 
 //        var result = conn.SelectDriverAndCar();
-//        DataBaseConnection.ConvertToStringStream.SelectDriverAndCarToShow(result); // tu wyświetli "null" dla hasła, jest to wartośc oczekiwana, więc git
+//        model.DataBaseConnection.ConvertToStringStream.SelectDriverAndCarToShow(result); // tu wyświetli "null" dla hasła, jest to wartośc oczekiwana, więc git
 
 //        var result = conn.SelectOneDriverAndCar("DR_3004_V");
-//        DataBaseConnection.ConvertToStringStream.SelectDriverAndCarToShow(result);
+//        model.DataBaseConnection.ConvertToStringStream.SelectDriverAndCarToShow(result);
 
 //        conn.UpdateWalletMoney(100.00f, "P#_10006"); // Zasilenie konta
 //        conn.UpdateWalletMoney(-100.00f, "P#_10006"); // Uiszczenie opłaty za przejazd
 
 //        var result = conn.SelectOnePassenger("P#_10006");
-//        DataBaseConnection.ConvertToStringStream.AllPassengerDataToStringStream(result); wyświetla wszystkie dane, chyba, że w zaytaniu o coś nie pytamy, wtedy daje null
+//        model.DataBaseConnection.ConvertToStringStream.AllPassengerDataToStringStream(result); wyświetla wszystkie dane, chyba, że w zaytaniu o coś nie pytamy, wtedy daje null
 
 //        var result = conn.SelectBasicAllComplaint();
-//        var toShow = DataBaseConnection.ConvertToStringStream.AllBasicComplaintDataToStringStream(result);
+//        var toShow = model.DataBaseConnection.ConvertToStringStream.AllBasicComplaintDataToStringStream(result);
 //        toShow.forEach(System.out::println);
 
 //        var result = conn.SelectBasicOneComplaint("_CMP_4004_cmp");
-//        DataBaseConnection.ConvertToStringStream.AllComplaintDataToStringStream(result);
+//        model.DataBaseConnection.ConvertToStringStream.AllComplaintDataToStringStream(result);
 
 
 //        conn.UpdateComplaintStatus("closed", "_CMP_4004_cmp");
 
 
 //        var result = conn.SelectComplaint("MG_4");
-//        var toShow = DataBaseConnection.ConvertToStringStream.AllBasicComplaintDataToStringStream(result);
+//        var toShow = model.DataBaseConnection.ConvertToStringStream.AllBasicComplaintDataToStringStream(result);
 //        toShow.forEach(System.out::println);
 
 //        var result = conn.SelectApplicationForEarlierSalary("MG_4");
 
-//        Passenger passenger = new Passenger();
+//        model.Passenger passenger = new model.Passenger();
 //        passenger.setFirstName("Thomas");
 //        passenger.setLastName("Anderson");
 //        passenger.setEmail("neo@matrix.com");
@@ -81,7 +83,7 @@ public class Main {
 //        conn.InsertPassengerAutoLogin(passenger);
 
 
-//        Driver driver = new Driver();
+//        model.Driver driver = new model.Driver();
 //        driver.setFirstName("Agent");
 //        driver.setLastName("Smith");
 //        driver.setEmail("agentsmith@matrix.com");
@@ -90,12 +92,12 @@ public class Main {
 //        driver.setSalary(0.0f);
 //        driver.setEmploymentStatus("Zatrudniony");
 //
-//        Car car = new Car("RTX4060","Mątwa", "Metaliczna śmierć", 1);
+//        model.Car car = new model.Car("RTX4060","Mątwa", "Metaliczna śmierć", 1);
 //        conn.InsertDriverWithCarWithAutoLogin(driver, car);
 
 
 
-//        Driver driver_2 = new Driver();
+//        model.Driver driver_2 = new model.Driver();
 //        driver_2.setFirstName("Ellen");
 //        driver_2.setLastName("Ripley");
 //        driver_2.setEmail("ellenripley@gmail.com");
@@ -104,12 +106,12 @@ public class Main {
 //        driver_2.setSalary(1000.0f);
 //        driver_2.setEmploymentStatus("Zastępca kapitana");
 //
-//        Car car_2 = new Car("20922179","Nostromo", "Metaliczny metal", 10000);
+//        model.Car car_2 = new model.Car("20922179","Nostromo", "Metaliczny metal", 10000);
 //        conn.InsertDriverWithCarWithAutoLogin(driver_2, car_2);
 
 
 
-//        Management employee = new Management();
+//        model.Management employee = new model.Management();
 //        employee.setFirstName("Woody");
 //        employee.setLastName("Pride");
 //        employee.setEmail("woodyt@toy.com");
@@ -177,7 +179,7 @@ public class Main {
         Ride ride = new Ride();
         String timerStart = "0:0:0";
         String timerEnd = "23:59:59";
-        //ride.setDate(DataBaseConnection.DateAndTime.GetCurrentDate());
+        //ride.setDate(model.DataBaseConnection.DateAndTime.GetCurrentDate());
         ride.setDate(DataBaseConnection.DateAndTime.GetRandomizeData(2024, 1, 1));
         ride.setPick_up("Test_Pick_Up");
         ride.setDestination("Test_Destination");
@@ -196,7 +198,7 @@ public class Main {
         Ride ride = new Ride();
         String timerStart = "0:0:0";
         String timerEnd = "23:59:59";
-        //ride.setDate(DataBaseConnection.DateAndTime.GetCurrentDate());
+        //ride.setDate(model.DataBaseConnection.DateAndTime.GetCurrentDate());
         ride.setDate(DataBaseConnection.DateAndTime.GetRandomizeData(2024, 1, 1));
         ride.setPick_up("Test_Pick_Up");
         ride.setDestination("Test_Destination");
