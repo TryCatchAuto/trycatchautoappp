@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        DataBaseConnection conn = new DataBaseConnection(5432, "postgres", "2hY76r", "trycatchauto");
+        DataBaseConnection conn = new DataBaseConnection(5432, "postgres", "Strz3l3czhr-SQL", "trycatchauto");
         //        AddPassenger();
 //        AddDriverWithCar(
 //                "TEST_NAME",
