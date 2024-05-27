@@ -2,6 +2,7 @@
 Kod do aplikacji
 krótka instrukcja obsługi tego repozytorium:
 na git hubie POWINNY BYĆ tylko 2 gałęzie main i testBranch
+po sklonowaniu wpiszcie w cmd jeszcze 'git checkout -b testBranch origin/testBranch' to pobierze wam i ustawi gałąź testBranch 
 każdy u siebie tworzy dodatkową gałąź (git checkout -b local) i nazywa ją jak chce polecam local
 wszytkie nowe rzeczy nad którymi pracujemy piszemy w local.
 Gdy skończycie pisać cały moduł i jesteście pewni że działa
