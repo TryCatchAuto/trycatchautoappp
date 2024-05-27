@@ -1,3 +1,5 @@
+package model;
+
 public class Car {
     private String car_id;
     private  String plates;

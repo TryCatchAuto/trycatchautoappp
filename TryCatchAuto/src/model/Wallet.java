@@ -1,3 +1,5 @@
+package model;
+
 public class Wallet {
     private String wallet_id;
     private float money;

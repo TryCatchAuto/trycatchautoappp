@@ -1,11 +1,12 @@
-public class Passenger {
-    private String passenger_id;
+package model;
+
+public class Management {
     private String lastName;
     private String firstName;
     private String email;
     private String login;
     private String password;
-    private float rating;
+    private String jobTitle;
 
     public String getLastName() {
         return lastName;
@@ -47,19 +48,11 @@ public class Passenger {
         this.password = password;
     }
 
-    public float getRating() {
-        return rating;
+    public String getJobTitle() {
+        return jobTitle;
     }
 
-    public void setRating(float rating) {
-        this.rating = rating;
-    }
-
-    public String getPassenger_id() {
-        return passenger_id;
-    }
-
-    public void setPassenger_id(String passenger_id) {
-        this.passenger_id = passenger_id;
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
     }
 }
