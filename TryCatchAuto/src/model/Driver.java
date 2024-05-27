@@ -1,10 +1,15 @@
-public class Management {
+package model;
+
+public class Driver {
+    private String driver_id;
     private String lastName;
     private String firstName;
     private String email;
     private String login;
     private String password;
-    private String jobTitle;
+    private float salary;
+    private float rating;
+    private String employmentStatus;
 
     public String getLastName() {
         return lastName;
@@ -46,11 +51,35 @@ public class Management {
         this.password = password;
     }
 
-    public String getJobTitle() {
-        return jobTitle;
+    public float getRating() {
+        return rating;
     }
 
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public float getSalary() {
+        return salary;
+    }
+
+    public void setSalary(float salary) {
+        this.salary = salary;
+    }
+
+    public String getDriver_id() {
+        return driver_id;
+    }
+
+    public void setDriver_id(String driver_id) {
+        this.driver_id = driver_id;
+    }
+
+    public String getEmploymentStatus() {
+        return employmentStatus;
+    }
+
+    public void setEmploymentStatus(String employmentStatus) {
+        this.employmentStatus = employmentStatus;
     }
 }

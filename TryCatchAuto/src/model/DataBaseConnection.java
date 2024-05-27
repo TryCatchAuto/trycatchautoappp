@@ -1,3 +1,5 @@
+package model;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,7 +92,7 @@ public class DataBaseConnection {
                     .collect(Collectors.toList());
         }
 
-        // returns: All, without: Driver.password
+        // returns: All, without: model.Driver.password
         //
         public static void SelectDriverAndCarToShow(List<PairDriverWithCar<Driver, Car>> pairs) {
             for (var pair : pairs) {
@@ -231,7 +233,7 @@ public class DataBaseConnection {
 
 
     //------------------------------------------------------------------------------
-    // inserts: All Passenger, All Wallet
+    // inserts: All model.Passenger, All model.Wallet
     //
     // [!!!] Transaction
 
@@ -275,7 +277,7 @@ public class DataBaseConnection {
 
 
     //------------------------------------------------------------------------------
-    // inserts: All Passenger, All Wallet, generate auto login
+    // inserts: All model.Passenger, All model.Wallet, generate auto login
     //
     // [!!!] Transaction
 
@@ -328,7 +330,7 @@ public class DataBaseConnection {
 
 
     //------------------------------------------------------------------------------
-    // updates: CreditCard Wallet for passenger
+    // updates: CreditCard model.Wallet for passenger
 
     public void UpdateWalletCreditCard(Boolean status, String passenger_id) {
         try (Connection con = getConnection()) {
@@ -346,7 +348,7 @@ public class DataBaseConnection {
 
 
     //------------------------------------------------------------------------------
-    // updates: Money Wallet for passenger
+    // updates: Money model.Wallet for passenger
 
     public void UpdateWalletMoney(float money, String passenger_id) {
         try (Connection con = getConnection()) {
@@ -364,7 +366,7 @@ public class DataBaseConnection {
 
 
     //------------------------------------------------------------------------------
-    // returns: All without password, login for one Passenger
+    // returns: All without password, login for one model.Passenger
 
     public Passenger SelectOnePassenger(String passenger_id) {
         Passenger passenger = new Passenger();
@@ -401,7 +403,7 @@ public class DataBaseConnection {
 
 
     //------------------------------------------------------------------------------
-    // inserts: All Driver, All Car
+    // inserts: All model.Driver, All model.Car
     //
     // [!!!] Transaction
 
@@ -449,7 +451,7 @@ public class DataBaseConnection {
 
 
     //------------------------------------------------------------------------------
-    // inserts: All Driver, All Car, generate auto login
+    // inserts: All model.Driver, All model.Car, generate auto login
     //
     // [!!!] Transaction
 
@@ -606,7 +608,7 @@ public class DataBaseConnection {
     }
 
     //------------------------------------------------------------------------------
-    // returns: All without: Driver.password for All drivers
+    // returns: All without: model.Driver.password for All drivers
 
     public List<PairDriverWithCar<Driver, Car>> SelectDriverAndCar() {
         List<PairDriverWithCar<Driver, Car>> pairArray = new ArrayList<>();
@@ -660,7 +662,7 @@ public class DataBaseConnection {
 
 
     //------------------------------------------------------------------------------
-    // returns: All without: Driver.password for One driver
+    // returns: All without: model.Driver.password for One driver
     //
     // streaming
 
@@ -766,7 +768,7 @@ public class DataBaseConnection {
 
 
     //------------------------------------------------------------------------------
-    // returns: All basic [data] ApplicationForEarlierSalary for One Employee
+    // returns: All basic [data] model.ApplicationForEarlierSalary for One Employee
 
     public List<ApplicationForEarlierSalary> SelectApplicationForEarlierSalary(String employee_id) {
         List<ApplicationForEarlierSalary> applicationForEarlierSalary = new ArrayList<>();
@@ -793,7 +795,7 @@ public class DataBaseConnection {
 
 
     //------------------------------------------------------------------------------
-    // returns: All [data] ApplicationForEarlierSalary for One Employee
+    // returns: All [data] model.ApplicationForEarlierSalary for One Employee
 
     public List<ApplicationForEarlierSalary> SelectAllDataApplicationForEarlierSalary(String id)  {
         List<ApplicationForEarlierSalary> applicationForEarlierSalary = new ArrayList<>();
@@ -831,7 +833,7 @@ public class DataBaseConnection {
 
 
     //------------------------------------------------------------------------------
-    // inserts: All Ride
+    // inserts: All model.Ride
 
     public void InsertRide(Ride ride) {
         try (Connection con = getConnection()) {
@@ -883,7 +885,7 @@ public class DataBaseConnection {
 
 
     //------------------------------------------------------------------------------
-    // update: Complaint Status
+    // update: model.Complaint Status
 
     public void UpdateComplaintStatus(String status, String complaint_id) {
         try (Connection con = getConnection()) {
@@ -928,7 +930,7 @@ public class DataBaseConnection {
 
 
     //------------------------------------------------------------------------------
-    // returns: All for one Complaint
+    // returns: All for one model.Complaint
 
     public Complaint SelectBasicOneComplaint(String complaint_id) {
         Complaint complaint = new Complaint();
