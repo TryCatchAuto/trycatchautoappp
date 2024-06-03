@@ -397,7 +397,7 @@ public class DataBaseConnection {
     //------------------------------------------------------------------------------
     // returns: String for special options
 
-    public String CheckLogin(String login, String password){
+    public String CheckLoginPassenger(String login, String password){
         String goodResult = null;
         try(Connection con = getConnection()) {
             try(PreparedStatement pr = con.prepareStatement(SELECT_SQL_LOGIN_PASSENGER);
