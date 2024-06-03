@@ -394,6 +394,48 @@ public class DataBaseConnection {
     }
 
 
+    //------------------------------------------------------------------------------
+    // returns: String for special options
+
+    public String CheckLogin(String login, String password){
+        String goodResult = null;
+        try(Connection con = getConnection()) {
+            try(PreparedStatement pr = con.prepareStatement(SELECT_SQL_LOGIN_PASSENGER);
+                PreparedStatement pr_pass = con.prepareStatement(SELECT_SQL_PASSWORD_PASSENGER)){
+                pr.setString(1, login);
+                ResultSet rs = pr.executeQuery();
+                var ifGood = rs.next();
+                if (!ifGood){
+                    pr.close();
+                    rs.close();
+                    con.close();
+                    return "badLogin";
+                }
+
+                pr_pass.setString(1, login);
+                ResultSet rs_pass = pr_pass.executeQuery();
+                String passwordFromDB = null;
+                if (rs_pass.next()){
+                    passwordFromDB = rs_pass.getString(1);
+                    goodResult = rs_pass.getString(2);
+                }
+                if (!passwordFromDB.equals(password)) {
+                    pr.close();
+                    rs.close();
+                    con.close();
+                    return "badPassword";
+                }
+            } catch (SQLException e){
+                System.out.println(e.getMessage());
+            }
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println(goodResult);
+        return goodResult;
+    }
+
+
 
     //-------------------
     //
