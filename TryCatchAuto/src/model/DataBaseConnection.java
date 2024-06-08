@@ -214,6 +214,12 @@ public class DataBaseConnection {
     private static final String SELECT_SQL_ALL_COMPLAINT = "SELECT * FROM Complaint WHERE complaint_id = ?;";
     private static final String SELECT_SQL_BASIC_AFES = "SELECT id, date, status FROM ApplicationForEarlierSalary WHERE employee_id = ?;";
     private static final String SELECT_SQL_ALL_DATA_AFES = "SELECT * FROM ApplicationForEarlierSalary WHERE id = ?;";
+    private static final String SELECT_SQL_LOGIN_PASSENGER = "SELECT passenger.login FROM passenger WHERE passenger.login = ?;";
+    private static final String SELECT_SQL_PASSWORD_PASSENGER = "SELECT passenger.password, passenger.passenger_id FROM passenger WHERE passenger.login = ?;";
+    private static final String SELECT_SQL_LOGIN_DRIVER = "SELECT driver.login FROM driver WHERE driver.login = ?;";
+    private static final String SELECT_SQL_PASSWORD_DRIVER = "SELECT driver.password, driver.driver_id FROM driver WHERE driver.login = ?;";
+    private static final String SELECT_SQL_LOGIN_MANAGEMENT = "SELECT management.login FROM management WHERE management.login = ?;";
+    private static final String SELECT_SQL_PASSWORD_MANAGEMENT = "SELECT management.password, management.employee_id FROM management WHERE management.login = ?;";
 
 
     private static final String UPDATE_SQL_WALLET = "UPDATE Wallet SET creditCard = ? WHERE wallet_id IN (SELECT wallet_id FROM Passenger WHERE passenger_id = ?);";
