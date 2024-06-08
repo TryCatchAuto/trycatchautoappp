@@ -11,7 +11,7 @@ import static contorller.CLogin.login_start;
 public class Main {
     public static void main(String[] args) throws SQLException {
         DataBaseConnection conn = new DataBaseConnection(5432, "postgres", "Strz3l3czhr-SQL", "trycatchauto");
-        login_start();
+        login_start(conn);
         //        AddPassenger();
 //        AddDriverWithCar(
 //                "TEST_NAME",

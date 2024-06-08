@@ -1,13 +1,22 @@
 package contorller;
 
 
+import model.DataBaseConnection;
 import model.Management;
 
 import static view.VLogin.start_login;
 import java.util.Scanner;
 
+/**
+ * class used for controlling system-user interactions at the start of the program
+ */
 public class CLogin {
-    public static void login_start(){
+    /**
+     * control over login panel
+     *
+     * @param conn database connection for interaction with DB
+     */
+    public static void login_start(DataBaseConnection conn){
         Scanner scanner=new Scanner(System.in);
         start_login();
         int choice;
@@ -30,20 +39,27 @@ public class CLogin {
              case 2: //to do
                  break;
             case 3:
-                 logging: while(true) {
+                boolean flag=true;
+                  while(flag) {
                      System.out.println("Management");
                      System.out.println("Login:");
                      login = scanner.nextLine();
                      System.out.println("Password:");
                      password = scanner.nextLine();
-                     int check= Management.chcekLoginAndPassword(login, password);
-                     switch (check){
-                         case 0: break logging;
-                         case 1: System.out.println("invalid login");break;
-                         case 2: System.out.println("invalid password");break;
+                     String checkResult= conn.CheckLoginManagement(login,password);
+                     switch (checkResult) {
+                         case "badLogin":
+                             
+                             break;
+                         case "badPassword":
+                             break;
+                         default:
+                             CManagment.menu();
+                             break;
+
                      }
                  }
-                 CManagment.menu();
+
                  break;
              case 4: //to do
                 // break;

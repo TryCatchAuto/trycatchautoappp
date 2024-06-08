@@ -56,8 +56,4 @@ public class Management {
         this.jobTitle = jobTitle;
     }
 
-    public static int chcekLoginAndPassword(String login, String password) {
-        //to do
-        return 0;
-    }
 }
