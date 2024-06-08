@@ -25,7 +25,9 @@ public class CLogin {
                 System.out.print("Enter your choice: ");
                 choice = scanner.nextInt();
                 scanner.nextLine();
-                break;
+                if(choice>=1&&choice<=4) {
+                    break;
+                }
             } catch(Exception e) {
                 System.out.println("Invalid input\n Try again:");
                 scanner.nextLine();
@@ -49,20 +51,30 @@ public class CLogin {
                      String checkResult= conn.CheckLoginManagement(login,password);
                      switch (checkResult) {
                          case "badLogin":
-                             
+                             System.out.println("Invalid login");
+                             System.out.println("Enter 'exit' to exit or press enter to continue");
+                             checkResult=scanner.nextLine();
+                             if(checkResult.equals("exit")) {
+                                 flag=false;
+                             }
                              break;
                          case "badPassword":
+                             System.out.println("Invalid Password");
+                             System.out.println("Enter 'exit' to exit or press enter to continue");
+                             checkResult=scanner.nextLine();
+                             if(checkResult.equals("exit")) {
+                                 flag=false;
+                             }
                              break;
                          default:
-                             CManagment.menu();
+                             CManagment.menu(conn,checkResult);
                              break;
 
                      }
                  }
-
                  break;
              case 4: //to do
-                // break;
+                 break;
              default:
                 throw new RuntimeException("something went very bad");
             }

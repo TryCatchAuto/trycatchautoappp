@@ -56,4 +56,15 @@ public class Management {
         this.jobTitle = jobTitle;
     }
 
+    /**
+     * Sends information to driver and in case complaint was accepted also to Passenger
+     * with price and explanation of the decision
+     * @param complaint complain which was resolved
+     * @param Description explanation of the decision
+     * @param price price of the fine
+     * @param accepted indication if complained was accepted or not
+     */
+    public void complainResolved(Complaint complaint, String Description, float price, boolean accepted){
+        // not implemented in prototype
+    }
 }
