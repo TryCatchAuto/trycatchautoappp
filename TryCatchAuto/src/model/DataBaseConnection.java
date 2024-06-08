@@ -220,6 +220,7 @@ public class DataBaseConnection {
     private static final String SELECT_SQL_PASSWORD_DRIVER = "SELECT driver.password, driver.driver_id FROM driver WHERE driver.login = ?;";
     private static final String SELECT_SQL_LOGIN_MANAGEMENT = "SELECT management.login FROM management WHERE management.login = ?;";
     private static final String SELECT_SQL_PASSWORD_MANAGEMENT = "SELECT management.password, management.employee_id FROM management WHERE management.login = ?;";
+    private static final String SELECT_SQL_ALL_DATA_MANAGEMENT = "SELECT Management.firstName,Management.lastName,Management.email,Management.login,Management.password,Management.jobTitle FROM Management WHERE Management.employee_id = ?;";
 
 
     private static final String UPDATE_SQL_WALLET = "UPDATE Wallet SET creditCard = ? WHERE wallet_id IN (SELECT wallet_id FROM Passenger WHERE passenger_id = ?);";
@@ -826,6 +827,34 @@ public class DataBaseConnection {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+
+    //------------------------------------------------------------------------------
+    // returns: one employee with all data
+
+    public Management SelectOneEmployee(String key) {
+        Management management = new Management();
+        try (Connection con = getConnection()){
+            try(PreparedStatement pr = con.prepareStatement(SELECT_SQL_ALL_DATA_MANAGEMENT )){
+                pr.setString(1, key);
+                ResultSet rs = pr.executeQuery();
+                if (rs.next()){
+                    management.setFirstName(rs.getString(1));
+                    management.setLastName(rs.getString(2));
+                    management.setEmail(rs.getString(3));
+                    management.setLogin(rs.getString(4));
+                    management.setPassword(rs.getString(5));
+                    management.setJobTitle(rs.getString(6));
+                }
+                rs.close();
+            } catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        } catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return management;
     }
 
 
