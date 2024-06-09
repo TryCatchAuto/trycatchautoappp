@@ -14,8 +14,9 @@ public class CManagement {
     Management logged= conn.SelectOneEmployee(managementId);
     Scanner sc = new Scanner(System.in);
     VManagement.menu(logged.getLogin());
-    int choice;
-    while(true) {
+    int choice=4;
+    boolean flag=true;
+    while(flag) {
         try {
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
@@ -31,11 +32,13 @@ public class CManagement {
     switch(choice) {
         case 1: CComplaints(logged,conn);
             break;
-        case 2: CAddDriver(conn);
+        case 2: CApplicationForEarlierSalary(conn,logged,managementId);
             break;
-        case 3: CApplicationForEarlierSalary(conn,logged,managementId);
+        case 3:
+            CAddDriver(conn);
             break;
-        case 4: break;
+        case 4: flag =false;
+        break;
         default: throw new RuntimeException("Something went wrong");
     }
 }
