@@ -2,7 +2,6 @@ package contorller;
 
 
 import model.DataBaseConnection;
-import model.Management;
 
 import static view.VLogin.start_login;
 import java.util.Scanner;
@@ -67,7 +66,7 @@ public class CLogin {
                              }
                              break;
                          default:
-                             CManagment.menu(conn,checkResult);
+                             CManagement.menu(conn,checkResult);
                              break;
 
                      }

@@ -54,4 +54,14 @@ public class Car {
     public void setCar_id(String car_id) {
         this.car_id = car_id;
     }
+
+    /**
+     * prints car to std out
+     */
+    public void print(){
+        System.out.println("Car plates: "+ plates );
+        System.out.println("Car model: "+ model );
+        System.out.println("Car color: "+ color );
+        System.out.println("Car seats: "+ seats );
+    }
 }
