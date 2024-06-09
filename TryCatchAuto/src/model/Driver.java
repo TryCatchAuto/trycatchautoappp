@@ -87,11 +87,12 @@ public class Driver {
      * prints driver to standard output
      */
     public void print(){
-        System.out.println("Driver ID: " + driver_id);
-        System.out.println("Last Name: " + lastName);
-        System.out.println("First Name: " + firstName);
-        System.out.println("Email: " + email);
-        System.out.println("Login: " + login);
-        System.out.println("Emp Status: " + employmentStatus);
+        System.out.print("Driver ID: " + driver_id + " ");
+        System.out.print("Last Name: " + lastName + " ");
+        System.out.print("First Name: " + firstName + " ");
+        System.out.print("Email: " + email + " ");
+        System.out.print("Login: " + login + " ");
+        System.out.print("Emp Status: " + employmentStatus + " ");
+        System.out.println();
     }
 }

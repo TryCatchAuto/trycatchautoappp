@@ -1,6 +1,8 @@
 package view;
 
+import model.ApplicationForEarlierSalary;
 import model.Complaint;
+import model.Management;
 
 /**
  * Screen displays for management account
@@ -33,6 +35,24 @@ public class VManagement {
         System.out.println("Complaint:");
         complaint.printComplaint();
         
+    }
+
+    public static void VAFES(String logged,java. util. List<ApplicationForEarlierSalary> applications){
+        System.out.println("Logged : "+logged);
+        System.out.println("Applications:");
+        int index=1;
+        for(var app : applications){
+            System.out.print(index++);
+            System.out.print(". ");
+            app.print();
+        }
+    }
+
+    public static void VResolveAFES(String logged, ApplicationForEarlierSalary application){
+        System.out.println("Logged : "+logged);
+        System.out.println("Application:");
+        application.print();
+
     }
 
 }

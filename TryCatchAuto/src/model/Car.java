@@ -59,9 +59,10 @@ public class Car {
      * prints car to std out
      */
     public void print(){
-        System.out.println("Car plates: "+ plates );
-        System.out.println("Car model: "+ model );
-        System.out.println("Car color: "+ color );
-        System.out.println("Car seats: "+ seats );
+        System.out.print("Car plates: "+ plates );
+        System.out.print("Car model: "+ model+" ");
+        System.out.print("Car color: "+ color+" ");
+        System.out.print("Car seats: "+ seats+" ");
+        System.out.println();
     }
 }

@@ -49,4 +49,27 @@ public class ApplicationForEarlierSalary {
     public void setEmployee_id(String employee_id) {
         this.employee_id = employee_id;
     }
+
+    /**
+     * prints Application for earlier salary to std out
+     */
+    public void print(){
+        System.out.print("Status: " + status +"  ");
+        System.out.print("Description: " + description+"  ");
+        System.out.print("Date: " + date+"  ");
+        System.out.print("Driver ID: " + driver_id+"  ");
+        System.out.print("Employee ID: " + employee_id+"  ");
+        System.out.println();
+    }
+
+    public void updateStatus(boolean approved){
+        String status ="";
+        if(approved){
+            status = "Approved";
+        }else{
+            status = "Rejected";
+        }
+        //DB update status
+
+    }
 }
