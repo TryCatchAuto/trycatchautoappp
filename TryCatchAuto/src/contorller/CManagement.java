@@ -47,16 +47,17 @@ public class CManagement {
      */
     public static void CComplaints(Management logged,DataBaseConnection conn){
     Scanner sc = new Scanner(System.in);
-    var list=conn.SelectBasicAllComplaint();
-    var complaints=list.stream()
+    var complaints=conn.SelectBasicAllComplaint().stream()
             .filter(complaint -> complaint.getStatus().equals("Open")).toList();
     VManagement.VComplaints(logged.getLogin(), complaints);
-    System.out.print("Enter complaintId or 'q' to quit: ");
-    String complaintId = sc.nextLine();
-    while(true) {
+
+    boolean flag=true;
+    while(flag) {
+        System.out.print("Enter complaintId or 'q' to quit: ");
+        String complaintId = sc.nextLine();
         try{
             if(complaintId.equals("q")) {
-                break;
+                flag=false;
             }
 
             int id = Integer.parseInt(complaintId);
@@ -80,12 +81,14 @@ public class CManagement {
     Scanner sc = new Scanner(System.in);
     VManagement.VComplaintResolve(logged.getLogin(), complaint);
     String description="";
+    String fine="";
     float price=-1.0f;
-    String answer = sc.nextLine();
+
     boolean flag=true;
     while(flag)
         {
             System.out.println("Do you want to resolve the complaint? (y/n)");
+            String answer = sc.nextLine();
             if (answer.equals("y")) {
                 System.out.println("Do you want to rule in favour of the Driver? (y/n)");
                 answer = sc.nextLine();
@@ -97,7 +100,8 @@ public class CManagement {
                     while (price == -1.0f) {
                         try {
                             System.out.println("Set price of fine: ");
-                            price = Float.parseFloat(description);
+                            fine = sc.nextLine();
+                            price = Float.parseFloat(fine);
                         } catch (NumberFormatException e) {
                             System.out.println("Invalid input\n Try again:");
                         }
@@ -209,5 +213,55 @@ public class CManagement {
         }
 
 
+    }
+
+    public static void CApplicationForEarlierSalary(DataBaseConnection conn,Management logged,String key){
+        Scanner sc = new Scanner(System.in);
+        var applications=conn.SelectAllDataApplicationForEarlierSalary(key).stream().
+                filter(x->x.getStatus().equals("Pending")).toList();
+        VManagement.VAFES(logged.getLogin(),applications);
+
+        boolean flag=true;
+        while(flag) {
+            System.out.print("Enter applicationId or 'q' to quit: ");
+            String applicationId = sc.nextLine();
+            try{
+                if(applicationId.equals("q")) {
+                    flag=false;
+                }
+
+                int id = Integer.parseInt(applicationId);
+                if(id>=1&&id<= applications.size()) {
+                    CResolveApplicationForEarlierSalary(conn, applications.get(id - 1), logged);
+                    break;
+                }
+            }catch (NumberFormatException e){
+                System.out.println("Invalid input\n Try again:");
+            }
+        }
+
+
+    }
+
+    private static void CResolveApplicationForEarlierSalary(DataBaseConnection conn, ApplicationForEarlierSalary applicationForEarlierSalary, Management logged) {
+        Scanner sc = new Scanner(System.in);
+        VManagement.VResolveAFES(logged.getLogin(), applicationForEarlierSalary);
+
+        boolean flag=true;
+        while(flag) {
+            System.out.print("Do you approve the application for earlier salary? (y/n) ('q' to quit) ");
+            String choice = sc.nextLine();
+            if (choice.equals("y")) {
+                applicationForEarlierSalary.updateStatus(true);
+                flag=false;
+            } else if (choice.equals("n")) {
+                applicationForEarlierSalary.updateStatus(false);
+                flag=false;
+            } else if (choice.equals("q")) {
+                flag=false;
+            } else{
+                System.out.println("Invalid input\n Try again:");
+            }
+        }
     }
 }

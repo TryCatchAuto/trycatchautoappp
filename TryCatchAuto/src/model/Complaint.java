@@ -68,13 +68,13 @@ public class Complaint {
     }
 
     public void printComplaint() {
-        System.out.print("Complaint ID: " + complaint_id);
-        System.out.print("Description: " + description);
-        System.out.print("Date: " + date);
-        System.out.print("Status: " + status);
-        System.out.print("Ride ID: " + ride_id);
-        System.out.print("Driver ID: " + driver_id);
-        System.out.print("Employee ID: " + employee_id);
+        System.out.print("Complaint ID: " + complaint_id+"  ");
+        System.out.print("Description: " + description +"  ");
+        System.out.print("Date: " + date +"  ");
+        System.out.print("Status: " + status +"  ");
+        System.out.print("Ride ID: " + ride_id +"  ");
+        System.out.print("Driver ID: " + driver_id +"  ");
+        System.out.print("Employee ID: " + employee_id +"  ");
         System.out.println();
     }
 }
