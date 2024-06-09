@@ -17,29 +17,35 @@ public class CManagement {
     int choice=4;
     boolean flag=true;
     while(flag) {
-        try {
-            System.out.print("Enter your choice: ");
-            choice = sc.nextInt();
-            sc.nextLine();
-            if (choice>=1 && choice<=4) {
-                break;
+        while (true) {
+            try {
+                System.out.print("Enter your choice: ");
+                choice = sc.nextInt();
+                sc.nextLine();
+                if (choice >= 1 && choice <= 4) {
+                    break;
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid input\n Try again:");
+                sc.nextLine();
             }
-        } catch(Exception e) {
-            System.out.println("Invalid input\n Try again:");
-            sc.nextLine();
         }
-    }
-    switch(choice) {
-        case 1: CComplaints(logged,conn);
-            break;
-        case 2: CApplicationForEarlierSalary(conn,logged,managementId);
-            break;
-        case 3:
-            CAddDriver(conn);
-            break;
-        case 4: flag =false;
-        break;
-        default: throw new RuntimeException("Something went wrong");
+        switch (choice) {
+            case 1:
+                CComplaints(logged, conn);
+                break;
+            case 2:
+                CApplicationForEarlierSalary(conn, logged, managementId);
+                break;
+            case 3:
+                CAddDriver(conn);
+                break;
+            case 4:
+                flag = false;
+                break;
+            default:
+                throw new RuntimeException("Something went wrong");
+        }
     }
 }
 
@@ -54,13 +60,14 @@ public class CManagement {
             .filter(complaint -> complaint.getStatus().equals("Open")).toList();
     VManagement.VComplaints(logged.getLogin(), complaints);
 
-    boolean flag=true;
-    while(flag) {
+    //boolean flag=true;
+    while(true) {
         System.out.print("Enter complaintId or 'q' to quit: ");
         String complaintId = sc.nextLine();
         try{
             if(complaintId.equals("q")) {
-                flag=false;
+                //flag=false;
+                break;
             }
 
             int id = Integer.parseInt(complaintId);
