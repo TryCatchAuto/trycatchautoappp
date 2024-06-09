@@ -64,7 +64,8 @@ public class Management {
      * @param price price of the fine
      * @param accepted indication if complained was accepted or not
      */
-    public void complainResolved(Complaint complaint, String Description, float price, boolean accepted){
+    public void complainResolved(DataBaseConnection conn,Complaint complaint, String Description, float price, boolean accepted){
+        conn.UpdateComplaintStatus(complaint.getStatus(), complaint.getComplaint_id());
         // not implemented in prototype
     }
 }

@@ -81,7 +81,7 @@ public static void CComplaintResolve(DataBaseConnection conn, Complaint complain
                             "\ndescription" + description + "\nprice" + price + "\n(y/n)");
                     if (sc.nextLine().equals("y")) {
                         complaint.setStatus("Resolved");
-                        logged.complainResolved(complaint, description, price, true);
+                        logged.complainResolved(conn,complaint, description, price, true);
                         flag=false;
                     }
                 }
@@ -95,7 +95,7 @@ public static void CComplaintResolve(DataBaseConnection conn, Complaint complain
                             "\ndescription" + description + "\nprice" + price + "\n(y/n)");
                     if (sc.nextLine().equals("y")) {
                         complaint.setStatus("Resolved");
-                        logged.complainResolved(complaint, description, price, false);
+                        logged.complainResolved(conn,complaint, description, price, false);
                         flag=false;
                     }
                 }
@@ -103,6 +103,11 @@ public static void CComplaintResolve(DataBaseConnection conn, Complaint complain
                 flag=false;
             }
     }
+
 }
 
+    public static void CAddDriver(DataBaseConnection conn, Management logged){
+    Scanner sc = new Scanner(System.in);
+
+    }
 }
