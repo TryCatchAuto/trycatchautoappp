@@ -33,7 +33,7 @@ public class CManagement {
             break;
         case 2: CAddDriver(conn);
             break;
-        case 3: //to do
+        case 3: CApplicationForEarlierSalary(conn,logged,managementId);
             break;
         case 4: break;
         default: throw new RuntimeException("Something went wrong");
