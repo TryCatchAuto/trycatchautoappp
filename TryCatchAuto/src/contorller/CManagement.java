@@ -78,7 +78,8 @@ public class CManagement {
 
             int id = Integer.parseInt(complaintId);
             if(id>=1&&id<= complaints.size()) {
-                CComplaintResolve(conn, complaints.get(id - 1), logged);
+                Complaint fullInof=conn.SelectBasicOneComplaint(complaints.get(id - 1).getComplaint_id());
+                CComplaintResolve(conn, fullInof, logged);
                 break;
             }
         }catch (NumberFormatException e){
