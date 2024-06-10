@@ -282,10 +282,10 @@ public class CManagement {
             System.out.print("Do you approve the application for earlier salary? (y/n) ('q' to quit) ");
             String choice = sc.nextLine();
             if (choice.equals("y")) {
-                applicationForEarlierSalary.updateStatus(true);
+                applicationForEarlierSalary.updateStatus(conn,true);
                 flag=false;
             } else if (choice.equals("n")) {
-                applicationForEarlierSalary.updateStatus(false);
+                applicationForEarlierSalary.updateStatus(conn,false);
                 flag=false;
             } else if (choice.equals("q")) {
                 flag=false;

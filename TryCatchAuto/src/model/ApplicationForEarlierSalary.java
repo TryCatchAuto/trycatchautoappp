@@ -81,14 +81,14 @@ public class ApplicationForEarlierSalary {
      * update status of Application for earlier salary in DB
      * @param approved indication if application was approved or not
      */
-    public void updateStatus(boolean approved){
+    public void updateStatus(DataBaseConnection conn,boolean approved){
         String status ="";
         if(approved){
             status = "Approved";
         }else{
             status = "Rejected";
         }
-        //DB update status
+        conn.UpdateAFES(status,id);
 
     }
 }
