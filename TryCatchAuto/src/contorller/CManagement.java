@@ -4,6 +4,12 @@ import model.*;
 import view.VManagement;
 import java.util.Scanner;
 
+/**
+ * controls Employee side of System
+ * gives option to add new driver,
+ * resolve complaint and resolve application for earlier salary
+ */
+
 public class CManagement {
     /**
      * Controls management menu
@@ -225,8 +231,16 @@ public class CManagement {
 
     }
 
+    /**
+     * controls screen with applications for earlier salary
+     * here you can pick one and then resolve it
+     * @param conn DB connection
+     * @param logged logged employee
+     * @param key employee ID
+     */
     public static void CApplicationForEarlierSalary(DataBaseConnection conn,Management logged,String key){
         Scanner sc = new Scanner(System.in);
+        //gets all applications to resolve for this employee from DB
         var applications=conn.SelectAllDataApplicationForEarlierSalary(key).stream().
                 filter(x->x.getStatus().equals("Pending")).toList();
         VManagement.VAFES(logged.getLogin(),applications);
@@ -253,6 +267,12 @@ public class CManagement {
 
     }
 
+    /**
+     * Controls resolvent of Application for earlier salary
+     * @param conn DB connection
+     * @param applicationForEarlierSalary application to resolve
+     * @param logged logged employee
+     */
     private static void CResolveApplicationForEarlierSalary(DataBaseConnection conn, ApplicationForEarlierSalary applicationForEarlierSalary, Management logged) {
         Scanner sc = new Scanner(System.in);
         VManagement.VResolveAFES(logged.getLogin(), applicationForEarlierSalary);
