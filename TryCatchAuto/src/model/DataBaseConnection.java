@@ -235,6 +235,7 @@ public class DataBaseConnection {
     private static final String UPDATE_SQL_LOGIN_FOR_AUTO_INSERT_PASSENGER = "UPDATE Passenger SET login = LOWER(LEFT(lastName, 1)) || LOWER(LEFT(firstName, 1)) || (currval('passenger_id_seq') + 10) || currval('passenger_id_seq')  WHERE passenger_id = ?;";
     private static final String UPDATE_SQL_LOGIN_FOR_AUTO_INSERT_DRIVER = "UPDATE Driver SET login = LOWER(LEFT(lastName, 1)) || LOWER(LEFT(firstName, 1)) || (currval('driver_id_seq') + 10) || currval('driver_id_seq')  WHERE driver_id = ?;";
     private static final String UPDATE_SQL_LOGIN_FOR_AUTO_INSERT_MANAGEMENT = "UPDATE Management SET login = LOWER(LEFT(lastName, 1)) || LOWER(LEFT(firstName, 1)) || (currval('management_id_seq') + 10) || currval('management_id_seq')  WHERE employee_id = ?;";
+    private static final String UPDATE_SQL_STATUS_AFES = "UPDATE ApplicationForEarlierSalary SET status = ? WHERE id = ?;";
 
     //-------------------
     //
@@ -993,6 +994,23 @@ public class DataBaseConnection {
             System.out.println(e.getMessage());
         }
         return  applicationForEarlierSalary;
+    }
+
+    //------------------------------------------------------------------------------
+    // update: AFES Status
+
+    public void UpdateAFES(String status, String afes_id) {
+        try (Connection con = getConnection()) {
+            try (PreparedStatement updateStatus = con.prepareStatement(UPDATE_SQL_STATUS_AFES)){
+                updateStatus.setString(1, status);
+                updateStatus.setString(2, afes_id);
+                updateStatus.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }catch(SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 
