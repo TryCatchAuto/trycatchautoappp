@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DataBaseConnection {
+
+
     private final String user;
     private final String pass;
     private final String url;
-
 
     public DataBaseConnection(String pass, String dbName) {
         this.user = "postgres";
@@ -187,9 +188,9 @@ public class DataBaseConnection {
     private static final String INSERT_SQL_COMPLAINT = "INSERT INTO Complaint (description, \"date\", status, ride_id, driver_id, employee_id) VALUES(?,?,?,?,?,?)";
     private static final String INSERT_SQL_APPLICATION_FOR_EARLIER_SALARY = "INSERT INTO ApplicationForEarlierSalary (status, description, \"date\", driver_id, employee_id) VALUES (?,?,?,?,?)";
 
-
     private static final String SELECT_SQL_ALL_DRIVERS = "SELECT * FROM Driver";
     private static final String SELECT_SQL_BASIC_DATA_DRIVER = "SELECT driver_id, firstName, lastName, rating FROM Driver;";
+
     private static final String SELECT_SQL_BASIC_PASSENGER = "SELECT Passenger.passenger_id, Passenger.firstName, Passenger.lastName,passenger.email, passenger.rating FROM passenger WHERE passenger_id = ?;";
     private static final String SELECT_SQL_BASIC_EMPLOYMENT_STATUS_DATA_DRIVER = "SELECT driver_id, firstName, lastName, rating, employmentStatus FROM Driver;";
     private static final String SELECT_SQL_ALL_DRIVERS_AND_CARS =

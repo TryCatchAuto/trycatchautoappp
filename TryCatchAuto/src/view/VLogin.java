@@ -14,4 +14,22 @@ public class VLogin {
         System.out.println("3. Management");
         System.out.println("4. Quit");
     }
+    public static void printLogin(){
+        System.out.println("Podaj login:");
+    }
+    public static void printPassword(){
+        System.out.println("Podaj haslo:");
+    }
+    public static void wrongData(){
+        System.out.println("Incorrect login or password. Press 1 to try again or 0 to exit application");
+    }
+    public static void printNoUser(){
+        System.out.println("Niepoprawny login.");
+    }
+    public static void printWrongPassword(){
+        System.out.println("Bledne haslo.");
+    }
+    public static void printSomeError(){
+        System.out.println("Error occurred  ");
+    }
 }

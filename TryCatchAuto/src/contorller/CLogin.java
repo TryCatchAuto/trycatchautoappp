@@ -4,6 +4,11 @@ package contorller;
 import model.DataBaseConnection;
 import model.Management;
 
+import model.DataBaseConnection;
+import model.Driver;
+import view.VDriver;
+import view.VLogin;
+
 import static view.VLogin.start_login;
 import java.util.Scanner;
 
@@ -38,8 +43,11 @@ public class CLogin {
         switch (choice) {
              case 1: //to do
                 break;
-             case 2: //to do
-                 break;
+            case 2:
+                    String driverID=loginDriver(conn);
+                    Driver driver=conn.SelectOneDriverAndCar(driverID).getFirst().getFirst();
+                    CDriver.driverMenu(conn,driver);
+                break;
             case 3:
                 boolean flag=true;
                   while(flag) {
@@ -77,6 +85,28 @@ public class CLogin {
                  break;
              default:
                 throw new RuntimeException("something went very bad");
+        }
+    }
+    private static String loginDriver(DataBaseConnection conn){
+        Scanner scanner=new Scanner(System.in);
+        VLogin.printLogin();
+        String login=scanner.nextLine();
+        VLogin.printPassword();
+        String password=scanner.nextLine();
+        String id=Driver.checkLogIn(conn,login,password);
+        //int choice=1;
+        while((id.equals("badLogin")||id.equals("badPassword"))){
+            VLogin.wrongData();
+            int choice=scanner.nextInt();
+            if(choice==0){
+                break;
             }
+            VLogin.printLogin();
+            login=scanner.nextLine();
+            password=scanner.nextLine();
+            id=Driver.checkLogIn(conn,login,password);
+        }
+        return id;
+
     }
 }

@@ -94,4 +94,24 @@ public class Driver {
         System.out.println("Login: " + login);
         System.out.println("Emp Status: " + employmentStatus);
     }
+
+    /**
+     * prints driver to standard output
+     */
+    public void print(){
+        System.out.println("Driver ID: " + driver_id);
+        System.out.println("Last Name: " + lastName);
+        System.out.println("First Name: " + firstName);
+        System.out.println("Email: " + email);
+        System.out.println("Login: " + login);
+        System.out.println("Emp Status: " + employmentStatus);
+    }
+    public static String checkLogIn(DataBaseConnection conn,String login,String password){
+        //String result=conn.CheckLoginDriver(login,password);
+
+
+        return conn.CheckLoginDriver(login,password);
+    }
+
+
 }
