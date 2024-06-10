@@ -38,6 +38,13 @@ public class Ride {
         price= random.nextFloat(15.00f,45.00f);
     }
 
+    public Ride(String passenger_id, String destination, String pick_up, DataBaseConnection conn){
+        this.destination = destination;
+        this.pick_up = pick_up;
+        this.passenger_id = passenger_id;
+        this.date = Date.valueOf(LocalDate.now());
+    }
+
     public java.sql.Date getDate() {
         return date;
     }
@@ -124,5 +131,29 @@ public class Ride {
 
     public void setRatingForDriver(float ratingForDriver) {
         this.ratingForDriver = ratingForDriver;
+    }
+
+    public float calculatePrice() {
+        Random rd = new Random();
+        return Math.round(rd.nextFloat() * 1000.0)/10.0f;
+    }
+
+    public int estimateArrivalTime() {
+        Random rd = new Random();
+        return rd.nextInt(10);
+    }
+
+    public int estimateArrivalTime(String driver_id) {
+        Random rd = new Random();
+        return rd.nextInt(10);
+    }
+
+    public boolean checkDistance(String newDestination) {
+        return true;
+    }
+
+    public float calculateAdditionalPrice() {
+        Random rd = new Random();
+        return Math.round(rd.nextFloat() * 100.0)/10.0f;
     }
 }
