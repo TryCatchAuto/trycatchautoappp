@@ -942,7 +942,7 @@ public class DataBaseConnection {
 
 
     //------------------------------------------------------------------------------
-    // returns: All basic [data] model.ApplicationForEarlierSalary for One Employee
+    // returns: All basic [data] ApplicationForEarlierSalary for One Employee
 
     public List<ApplicationForEarlierSalary> SelectApplicationForEarlierSalary(String employee_id) {
         List<ApplicationForEarlierSalary> applicationForEarlierSalary = new ArrayList<>();
@@ -952,7 +952,7 @@ public class DataBaseConnection {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     ApplicationForEarlierSalary app = new ApplicationForEarlierSalary();
-                    app.setEmployee_id(rs.getString(1));
+                    app.setId(rs.getString(1));
                     app.setDate(rs.getDate(2));
                     app.setStatus(rs.getString(3));
                     applicationForEarlierSalary.add(app);

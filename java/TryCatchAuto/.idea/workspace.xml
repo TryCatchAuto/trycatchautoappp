@@ -5,7 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe2681c0-a827-42f2-93e9-1c2d16496340" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/.idea/libraries/postgresql_42_7_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/.idea/libraries/postgresql_42_7_32.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/TryCatchAuto.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/contorller/CDriver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/contorller/CLogin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/contorller/CManagement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/contorller/CPassenger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/model/ApplicationForEarlierSalary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/model/Car.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/model/Complaint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/model/DataBaseConnection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/model/Driver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/model/Management.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/model/Passenger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/model/Ride.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/model/Wallet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/view/VDriver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/view/VLogin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/view/VManagement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/view/VPassenger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TryCatchAuto/src/view/VRide.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,24 +50,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;local&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/lukas/Desktop/Trycath/trycatchautoappp/TryCatchAuto&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "testBranch",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/barte/OneDrive/Dokumenty/Uczelnia/Semestr IV/Inż. Op/GiT/Aplikacja/trycatchautoappp/java/TryCatchAuto",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -52,6 +87,7 @@
       <workItem from="1716806106160" duration="936000" />
       <workItem from="1718014783833" duration="23000" />
       <workItem from="1718015092797" duration="31000" />
+      <workItem from="1718019728809" duration="14000" />
     </task>
     <servers />
   </component>

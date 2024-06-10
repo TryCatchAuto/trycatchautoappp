@@ -3,12 +3,17 @@ package model;
 import java.sql.Date;
 
 public class ApplicationForEarlierSalary {
+    private String id;
     private String status;
     private String description;
     private Date date;
     private String driver_id;
     private String employee_id;
 
+
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
 
     public String getStatus() {
         return status;
