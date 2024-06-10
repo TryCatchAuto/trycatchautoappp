@@ -2,7 +2,6 @@ package contorller;
 
 
 import model.DataBaseConnection;
-import model.Management;
 
 import model.DataBaseConnection;
 import model.Driver;
@@ -75,7 +74,7 @@ public class CLogin {
                              }
                              break;
                          default:
-                             CManagment.menu(conn,checkResult);
+                             CManagement.menu(conn,checkResult);
                              break;
 
                      }

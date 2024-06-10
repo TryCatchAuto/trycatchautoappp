@@ -68,4 +68,6 @@ public class Management {
         conn.UpdateComplaintStatus(complaint.getStatus(), complaint.getComplaint_id());
         // not implemented in prototype
     }
+
+
 }
