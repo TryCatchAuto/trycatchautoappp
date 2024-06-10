@@ -137,6 +137,7 @@ public class CLogin {
         //int choice=1;
         while((id.equals("badLogin")||id.equals("badPassword"))){
             VLogin.wrongData();
+            scanner.close();
             int choice=scanner.nextInt();
             if(choice==0){
                 break;

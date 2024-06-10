@@ -42,8 +42,8 @@ public class CDriver {
 
 
             }
-            VDriver.printMenuDuringWork();
-            choice =scanner.nextInt();
+//            VDriver.printMenu();
+//            choice =scanner.nextInt();
 
         }
     }

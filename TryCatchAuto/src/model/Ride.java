@@ -5,6 +5,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ride {
@@ -24,7 +25,8 @@ public class Ride {
     public Ride(DataBaseConnection conn){
         date= Date.valueOf(LocalDate.now());
         startTime= Time.valueOf(LocalTime.now());
-        ArrayList<String>listOfPassengersID=new ArrayList<>();
+        //ArrayList<String>listOfPassengersID=new ArrayList<>();
+        List<String> listOfPassengersID=conn.SelectAllPassengerID();
         //metoda Bartka do zczytania ID pasażerów z Bazy Danych
         Random random=new Random();
         String id= listOfPassengersID.get(random.nextInt(listOfPassengersID.size()));
