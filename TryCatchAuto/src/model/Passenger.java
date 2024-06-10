@@ -71,6 +71,7 @@ public class Passenger {
         this.passenger_id = passenger_id;
     }
 
+    public void setWallet(Wallet wallet){this.wallet = wallet;}
     private boolean canIAffordIt(Wallet wallet,float price){
         try{
             if(wallet.getMoney()<price) return false;

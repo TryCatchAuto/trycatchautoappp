@@ -5,11 +5,17 @@ import model.DataBaseConnection;
 
 import model.DataBaseConnection;
 import model.Driver;
+import model.Passenger;
 import view.VDriver;
 import view.VLogin;
 
+import static contorller.CPassenger.Pmenu;
+import static model.Passenger.chceckLogIn;
+import static view.VLogin.*;
+
 import static view.VLogin.start_login;
 import java.util.Scanner;
+import view.VPassenger.*;
 
 /**
  * class used for controlling system-user interactions at the start of the program
@@ -40,7 +46,42 @@ public class CLogin {
         String login;
         String password;
         switch (choice) {
-             case 1: //to do
+             case 1: printLogin();
+                 while(true) {
+                     try {
+                         login = scanner.next();
+                         break;
+                     } catch(Exception e) {
+                         System.out.println("Invalid input\n Try again:");
+                     }
+                 }
+                 printPassword();
+                 while(true) {
+                     try {
+                         password = scanner.next();
+                         break;
+                     } catch(Exception e) {
+                         System.out.println("Invalid input\n Try again:");
+                     }
+                 }
+                 String result;
+                 result = chceckLogIn(conn,login,password);
+                 switch (result){
+                     case "badLogin":
+                         //brak uzytkownika
+                         printNoUser();
+                         break;
+                     case "badPassword":
+                         //bledne haslo
+                         printWrongPassword();
+                         break;
+                     default:
+                         //poprawne logowanie
+                         Passenger passenger = conn.SelectOnePassenger(result);
+                         passenger.setWallet(conn.SelectDataForWallet(result));
+                         Pmenu(passenger, conn);
+                         break;
+                 }
                 break;
             case 2:
                     String driverID=loginDriver(conn);
