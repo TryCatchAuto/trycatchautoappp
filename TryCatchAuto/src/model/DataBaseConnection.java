@@ -223,6 +223,8 @@ public class DataBaseConnection {
     private static final String SELECT_SQL_PASSWORD_MANAGEMENT = "SELECT management.password, management.employee_id FROM management WHERE management.login = ?;";
     private static final String SELECT_SQL_ALL_DATA_MANAGEMENT = "SELECT Management.firstName,Management.lastName,Management.email,Management.login,Management.password,Management.jobTitle FROM Management WHERE Management.employee_id = ?;";
     private static final String SELECT_SQL_ALL_ID_PASSENGERS = "SELECT passenger_id FROM Passenger;";
+    private static final String SELECT_SQL_WALLET_DATA = "SELECT wallet.wallet_id, money, creditCard FROM wallet JOIN passenger ON wallet.wallet_id = passenger.wallet_id WHERE passenger_id = ?;";
+
 
 
     private static final String UPDATE_SQL_WALLET = "UPDATE Wallet SET creditCard = ? WHERE wallet_id IN (SELECT wallet_id FROM Passenger WHERE passenger_id = ?);";
@@ -373,6 +375,34 @@ public class DataBaseConnection {
         }
     }
 
+
+    //------------------------------------------------------------------------------
+    // returns: All data from wallet for one passenger
+
+    public Wallet SelectDataForWallet(String passenger_id) {
+        boolean creditCard;
+        float money;
+        Wallet wallet = new Wallet(0.0f, false);
+        try (Connection con = getConnection()) {
+            try (PreparedStatement preparedStatement = con.prepareStatement(SELECT_SQL_WALLET_DATA)) {
+                preparedStatement.setString(1, passenger_id);
+
+                ResultSet rs = preparedStatement.executeQuery();
+                if (rs.next()) {
+                    money = rs.getFloat(2);
+                    creditCard = rs.getBoolean(3);
+                    wallet = new Wallet(money, creditCard);
+                    wallet.setWallet_id(rs.getString(1));
+                }
+                rs.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return wallet;
+    }
 
     //------------------------------------------------------------------------------
     // returns: All without password, login for one model.Passenger
