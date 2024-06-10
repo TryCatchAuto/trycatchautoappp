@@ -54,14 +54,28 @@ public class ApplicationForEarlierSalary {
      * prints Application for earlier salary to std out
      */
     public void print(){
-        System.out.print("Status: " + status +"  ");
-        System.out.print("Description: " + description+"  ");
+        System.out.print("Status: " + status + "  ");
+        System.out.print("Description: " + description + "  ");
         System.out.print("Date: " + date+"  ");
-        System.out.print("Driver ID: " + driver_id+"  ");
-        System.out.print("Employee ID: " + employee_id+"  ");
+        System.out.print("Driver ID: " + driver_id + "  ");
+        System.out.print("Employee ID: " + employee_id + "  ");
         System.out.println();
     }
 
+    /**
+     * prints basic info about AFES
+     */
+    public void printBasicInfo(){
+        System.out.print("Status: " + status + "  ");
+        System.out.print("Date: " + date+"  ");
+        System.out.print("Driver ID: " + driver_id + "  ");
+        System.out.println();
+    }
+
+    /**
+     * update status of Application for earlier salary in DB
+     * @param approved indication if application was approved or not
+     */
     public void updateStatus(boolean approved){
         String status ="";
         if(approved){

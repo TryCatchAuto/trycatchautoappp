@@ -67,6 +67,9 @@ public class Complaint {
         this.complaint_id = complaint_id;
     }
 
+    /**
+     * prints all information about complaint to std out
+     */
     public void printComplaint() {
         System.out.print("Complaint ID: " + complaint_id+"  ");
         System.out.print("Description: " + description +"  ");
@@ -77,4 +80,16 @@ public class Complaint {
         System.out.print("Employee ID: " + employee_id +"  ");
         System.out.println();
     }
+
+    /**
+     * prints complaint ID status and Date to standard output
+     */
+    public void printBasicInfo(){
+        System.out.print("Complaint ID: " + complaint_id + "  ");
+        System.out.print("Status: " + status + "  ");
+        System.out.print("Date: " + date + "  ");
+        System.out.println();
+    }
+
+
 }
