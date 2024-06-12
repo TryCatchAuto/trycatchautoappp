@@ -19,12 +19,12 @@ public class CManagement {
     public static void menu(DataBaseConnection conn,String managementId){
     Management logged= conn.SelectOneEmployee(managementId);
     Scanner sc = new Scanner(System.in);
-    VManagement.menu(logged.getLogin());
     int choice=4;
     boolean flag=true;
     while(flag) {
         while (true) {
             try {
+                VManagement.menu(logged.getLogin());
                 System.out.print("Enter your choice: ");
                 choice = sc.nextInt();
                 sc.nextLine();
@@ -247,12 +247,13 @@ public class CManagement {
         VManagement.VAFES(logged.getLogin(),applications);
 
         boolean flag=true;
-        while(flag) {
+        while(true) {
             System.out.print("Enter applicationId or 'q' to quit: ");
             String applicationId = sc.nextLine();
             try{
                 if(applicationId.equals("q")) {
                     flag=false;
+                    break;
                 }
 
                 int id = Integer.parseInt(applicationId);
