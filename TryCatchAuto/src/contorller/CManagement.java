@@ -170,9 +170,6 @@ public class CManagement {
         System.out.print("Enter Driver Email: ");
         String driverEmail = sc.nextLine();
         driver.setEmail(driverEmail);
-        System.out.print("Enter Driver Login: ");
-        String driverLogin = sc.nextLine();
-        driver.setLogin(driverLogin);
         boolean passwordsAreInCorrect = true;
         while(passwordsAreInCorrect) {
             System.out.print("Enter Driver Password: ");
@@ -190,17 +187,17 @@ public class CManagement {
         driver.setRating(0.0f);
         driver.setDriver_id("");
         //add car
-        System.out.print("Enter Car Plates");
+        System.out.print("Enter Car Plates: ");
         String carPlates = sc.nextLine();
         driverCar.setPlates(carPlates);
-        System.out.print("Enter Car Model");
+        System.out.print("Enter Car Model: ");
         String carModel = sc.nextLine();
         driverCar.setModel(carModel);
-        System.out.print("Enter Car color");
+        System.out.print("Enter Car color: ");
         String carColor = sc.nextLine();
         driverCar.setColor(carColor);
         while(true) {
-            System.out.print("Enter Number of Seats");
+            System.out.print("Enter Number of Seats: ");
             String seats = sc.nextLine();
             try {
                 int seatsNum = Integer.parseInt(seats);

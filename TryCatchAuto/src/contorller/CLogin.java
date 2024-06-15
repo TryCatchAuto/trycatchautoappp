@@ -116,6 +116,7 @@ public class CLogin {
                              break;
                          default:
                              CManagement.menu(conn,checkResult);
+                             flag=false;
                              break;
 
                      }
