@@ -235,6 +235,8 @@ public class DataBaseConnection {
     private static final String UPDATE_SQL_LOGIN_FOR_AUTO_INSERT_PASSENGER = "UPDATE Passenger SET login = LOWER(LEFT(lastName, 1)) || LOWER(LEFT(firstName, 1)) || (currval('passenger_id_seq') + 10) || currval('passenger_id_seq')  WHERE passenger_id = ?;";
     private static final String UPDATE_SQL_LOGIN_FOR_AUTO_INSERT_DRIVER = "UPDATE Driver SET login = LOWER(LEFT(lastName, 1)) || LOWER(LEFT(firstName, 1)) || (currval('driver_id_seq') + 10) || currval('driver_id_seq')  WHERE driver_id = ?;";
     private static final String UPDATE_SQL_LOGIN_FOR_AUTO_INSERT_MANAGEMENT = "UPDATE Management SET login = LOWER(LEFT(lastName, 1)) || LOWER(LEFT(firstName, 1)) || (currval('management_id_seq') + 10) || currval('management_id_seq')  WHERE employee_id = ?;";
+    private static final String UPDATE_SQL_STATUS_AFES = "UPDATE ApplicationForEarlierSalary SET status = ? WHERE id = ?;";
+    private static final String UPDATE_SQL_DRIVER_SALARY = "UPDATE Driver SET salary = salary + ? WHERE driver_id = ?;";
 
     //-------------------
     //
@@ -611,6 +613,22 @@ public class DataBaseConnection {
         }
     }
 
+    //------------------------------------------------------------------------------
+    // updates: Salary for one driver
+
+    public void UpdateSalaryDriver(float money, String driver_id) {
+        try (Connection con = getConnection()) {
+            try (PreparedStatement ps = con.prepareStatement(UPDATE_SQL_DRIVER_SALARY)) {
+                ps.setFloat(1, money);
+                ps.setString(2, driver_id);
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("Something went wrong");
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
 
     //------------------------------------------------------------------------------
     // returns: All
@@ -940,7 +958,7 @@ public class DataBaseConnection {
 
 
     //------------------------------------------------------------------------------
-    // returns: All basic [data] model.ApplicationForEarlierSalary for One Employee
+    // returns: All basic [data] ApplicationForEarlierSalary for One Employee
 
     public List<ApplicationForEarlierSalary> SelectApplicationForEarlierSalary(String employee_id) {
         List<ApplicationForEarlierSalary> applicationForEarlierSalary = new ArrayList<>();
@@ -950,7 +968,7 @@ public class DataBaseConnection {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     ApplicationForEarlierSalary app = new ApplicationForEarlierSalary();
-                    app.setEmployee_id(rs.getString(1));
+                    app.setId(rs.getString(1));
                     app.setDate(rs.getDate(2));
                     app.setStatus(rs.getString(3));
                     applicationForEarlierSalary.add(app);
@@ -1191,6 +1209,24 @@ public class DataBaseConnection {
             insertApplicationForEarlierSalary.setString(5, earlierSalary.getEmployee_id());
             insertApplicationForEarlierSalary.executeUpdate();
         }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    //------------------------------------------------------------------------------
+    // update: AFES Status
+
+    public void UpdateAFES(String status, String afes_id) {
+        try (Connection con = getConnection()) {
+            try (PreparedStatement updateStatus = con.prepareStatement(UPDATE_SQL_STATUS_AFES)){
+                updateStatus.setString(1, status);
+                updateStatus.setString(2, afes_id);
+                updateStatus.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }catch(SQLException e) {
             System.out.println(e.getMessage());
         }
     }

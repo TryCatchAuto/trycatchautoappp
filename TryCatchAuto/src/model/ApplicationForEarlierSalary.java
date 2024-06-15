@@ -3,12 +3,17 @@ package model;
 import java.sql.Date;
 
 public class ApplicationForEarlierSalary {
+    private String id;
     private String status;
     private String description;
     private Date date;
     private String driver_id;
     private String employee_id;
 
+
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
 
     public String getStatus() {
         return status;
@@ -76,14 +81,14 @@ public class ApplicationForEarlierSalary {
      * update status of Application for earlier salary in DB
      * @param approved indication if application was approved or not
      */
-    public void updateStatus(boolean approved){
+    public void updateStatus(DataBaseConnection conn,boolean approved){
         String status ="";
         if(approved){
             status = "Approved";
         }else{
             status = "Rejected";
         }
-        //DB update status
+        conn.UpdateAFES(status,id);
 
     }
 }

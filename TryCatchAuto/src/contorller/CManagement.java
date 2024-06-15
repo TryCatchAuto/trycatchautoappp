@@ -19,12 +19,12 @@ public class CManagement {
     public static void menu(DataBaseConnection conn,String managementId){
     Management logged= conn.SelectOneEmployee(managementId);
     Scanner sc = new Scanner(System.in);
-    VManagement.menu(logged.getLogin());
     int choice=4;
     boolean flag=true;
     while(flag) {
         while (true) {
             try {
+                VManagement.menu(logged.getLogin());
                 System.out.print("Enter your choice: ");
                 choice = sc.nextInt();
                 sc.nextLine();
@@ -78,7 +78,8 @@ public class CManagement {
 
             int id = Integer.parseInt(complaintId);
             if(id>=1&&id<= complaints.size()) {
-                CComplaintResolve(conn, complaints.get(id - 1), logged);
+                Complaint fullInof=conn.SelectBasicOneComplaint(complaints.get(id - 1).getComplaint_id());
+                CComplaintResolve(conn, fullInof, logged);
                 break;
             }
         }catch (NumberFormatException e){
@@ -169,9 +170,6 @@ public class CManagement {
         System.out.print("Enter Driver Email: ");
         String driverEmail = sc.nextLine();
         driver.setEmail(driverEmail);
-        System.out.print("Enter Driver Login: ");
-        String driverLogin = sc.nextLine();
-        driver.setLogin(driverLogin);
         boolean passwordsAreInCorrect = true;
         while(passwordsAreInCorrect) {
             System.out.print("Enter Driver Password: ");
@@ -189,17 +187,17 @@ public class CManagement {
         driver.setRating(0.0f);
         driver.setDriver_id("");
         //add car
-        System.out.print("Enter Car Plates");
+        System.out.print("Enter Car Plates: ");
         String carPlates = sc.nextLine();
         driverCar.setPlates(carPlates);
-        System.out.print("Enter Car Model");
+        System.out.print("Enter Car Model: ");
         String carModel = sc.nextLine();
         driverCar.setModel(carModel);
-        System.out.print("Enter Car color");
+        System.out.print("Enter Car color: ");
         String carColor = sc.nextLine();
         driverCar.setColor(carColor);
         while(true) {
-            System.out.print("Enter Number of Seats");
+            System.out.print("Enter Number of Seats: ");
             String seats = sc.nextLine();
             try {
                 int seatsNum = Integer.parseInt(seats);
@@ -246,12 +244,13 @@ public class CManagement {
         VManagement.VAFES(logged.getLogin(),applications);
 
         boolean flag=true;
-        while(flag) {
+        while(true) {
             System.out.print("Enter applicationId or 'q' to quit: ");
             String applicationId = sc.nextLine();
             try{
                 if(applicationId.equals("q")) {
                     flag=false;
+                    break;
                 }
 
                 int id = Integer.parseInt(applicationId);
@@ -282,10 +281,10 @@ public class CManagement {
             System.out.print("Do you approve the application for earlier salary? (y/n) ('q' to quit) ");
             String choice = sc.nextLine();
             if (choice.equals("y")) {
-                applicationForEarlierSalary.updateStatus(true);
+                applicationForEarlierSalary.updateStatus(conn,true);
                 flag=false;
             } else if (choice.equals("n")) {
-                applicationForEarlierSalary.updateStatus(false);
+                applicationForEarlierSalary.updateStatus(conn,false);
                 flag=false;
             } else if (choice.equals("q")) {
                 flag=false;
