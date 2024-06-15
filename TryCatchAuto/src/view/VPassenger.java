@@ -8,10 +8,10 @@ public class VPassenger {
         System.out.println("3. Show history.");
     }
     public static void printGiveDestination(){
-        System.out.println("Input destination.");
+        System.out.println("Enter destination.");
     }
     public static void printGiveLocation(){
-        System.out.println("Input pickup location.");
+        System.out.println("Enter pickup location.");
     }
     public static void printGiveNOfPeople(){
         System.out.println("How many passengers (1,4).");
@@ -23,12 +23,19 @@ public class VPassenger {
     public static void printLookingForDriver(){
         System.out.println("Looking for available driver...");
     }
+    public static void printNoDriverFound(){System.out.println("Can't find a driver. Try again later.");}
     public static void printDriverFound(String name,String lastName, float rating, int time){
         System.out.println("Driver has been found.");
         System.out.println("Driver info: " + name + " " + lastName + " rating: " + String.valueOf(rating));
         System.out.println("Estimated time of your driver arrival: " + String.valueOf(time) + " minutes");
         System.out.println("To accept press 1. To find another driver press 2.");
         System.out.println("To cancel your ride press 0.");
+    }
+    public static void printInfoAboutYourDriver(String name,String lastName, String carPlate, String carModel, String carColor){
+        System.out.println("Driver info: ");
+        System.out.println("Name: " + name + " " + lastName);
+        System.out.println("Car info: ");
+        System.out.println("Car plate: " + carPlate + " Car model: " + carModel + " Car color: " + carColor);
     }
     public static void printTimeToDriverArrival(int time){
         System.out.println("Your driver will be in pickup spot in: " + String.valueOf(time) + " minutes");
@@ -47,9 +54,9 @@ public class VPassenger {
         System.out.println("Price of the ride is " + String.valueOf(price) + " zl.");
     }
     public static void printChangeOpt(){
-        System.out.println("If you want to change destination press 9");
+        System.out.println("If you want to change destination press 9. (To end ride press 0.)");
     }
-    public static void printChangeDestinaton(){
+    public static void printChangeDestination(){
         System.out.println("Input new destination.");
     }
     public static void printWrongDistance(){
@@ -57,16 +64,5 @@ public class VPassenger {
     }
     public static void printDestinationChanged(){
         System.out.println("Destination has been changed.");
-    }
-    public static void printMenuWallet(){
-        System.out.println("0. Exit.");
-        System.out.println("1. Add card.");
-        System.out.println("2. Add funds.");
-    }
-    public static void printAddFunds(){
-        System.out.println("Enter amount of funds to add.");
-    }
-    public static void printMoneyAdded(){
-        System.out.println("Money has been added to your wallet.");
     }
 }

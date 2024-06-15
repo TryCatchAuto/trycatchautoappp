@@ -135,7 +135,10 @@ public class Ride {
 
     public float calculatePrice() {
         Random rd = new Random();
-        return Math.round(rd.nextFloat() * 1000.0)/10.0f;
+        double min = 5;
+        double max = 30;
+        double random = min + rd.nextDouble() * (max - min);
+        return Math.round(random*100.0f)/100.0f;
     }
 
     public int estimateArrivalTime() {
@@ -154,6 +157,9 @@ public class Ride {
 
     public float calculateAdditionalPrice() {
         Random rd = new Random();
-        return Math.round(rd.nextFloat() * 100.0)/10.0f;
+        double min = 1;
+        double max = 15;
+        double random = min + rd.nextDouble() * (max - min);
+        return Math.round(random*100.0f)/100.0f;
     }
 }

@@ -4,6 +4,7 @@ import model.Passenger;
 
 import java.util.Scanner;
 
+import static contorller.CWallet.WalletMenu;
 import static view.VPassenger.*;
 
 public class CPassenger {
@@ -30,18 +31,7 @@ public class CPassenger {
                     break;
                 case 2:
                     //portfel
-                    int optWallet = -1;
-                    while (optWallet != 0) {
-                        printMenuWallet();
-                        optWallet = scan.nextInt();
-                        switch (optWallet) {
-                            case 1:
-                                break;
-                            case 2:
-                                passenger.addFunds(conn);
-                                break;
-                        }
-                    }
+                    WalletMenu(conn, passenger);
                     break;
                 case 3:
                     //historia

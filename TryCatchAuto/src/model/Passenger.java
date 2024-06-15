@@ -1,9 +1,20 @@
 package model;
 
+import contorller.CWallet;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 import static view.VPassenger.*;
+import static view.VWallet.*;
+import static view.VWallet.printAddCard;
+import static view.VWallet.printAddFunds;
+import static view.VWallet.printCreditCardAdded;
+import static view.VWallet.printCreditCardChanged;
+import static view.VWallet.printMoneyAdded;
+import static view.VWallet.printNoCreditCard;
+
 
 public class Passenger {
     private String passenger_id;
@@ -72,7 +83,12 @@ public class Passenger {
     }
 
     public void setWallet(Wallet wallet){this.wallet = wallet;}
-    private boolean canIAffordIt(Wallet wallet,float price){
+
+    public Wallet getWallet() {
+        return wallet;
+    }
+
+    private boolean canIAffordIt(Wallet wallet, float price){
         try{
             if(wallet.getMoney()<price) return false;
         }catch (Exception e){
@@ -134,31 +150,43 @@ public class Passenger {
             return;
         }else{
             List<Driver> drivers = null;
+            Driver driver = null;
             int id = -1;
             int time = 0;
-            String driverId = null;
             int driverFound = -1;
             //cena zaakceptowana
             wallet.setMoney(wallet.getMoney()-price);
             while(driverFound!=1 && driverFound!=0){
                 printLookingForDriver();
-                drivers = new ArrayList<>();
-                Driver driver = new Driver();
-                driver.setDriver_id("driver1");
-                driver.setFirstName("Adam");
-                driver.setLastName("Kowalski");
-                driver.setRating(4.5f);
-                drivers.add(driver);
-//              drivers = conn.SelectAllDriversToList();
-//              Random rd = new Random();
-//              id = rd.nextInt(drivers.size());
-//              driverId = drivers.get(id).getDriver_id();
-                driverId = driver.getDriver_id();
-                time = ride.estimateArrivalTime(driverId);
+
+                //dane do testow bez bazy danych
+//                drivers = new ArrayList<>();
+//                Driver driver1 = new Driver();
+//                driver1.setDriver_id("driver1");
+//                driver1.setFirstName("Adam");
+//                driver1.setLastName("Kowalski");
+//                driver1.setRating(4.5f);
+//                drivers.add(driver1);
+//                Driver driver2 = new Driver();
+//                driver2.setDriver_id("driver2");
+//                driver2.setFirstName("Ronald");
+//                driver2.setLastName("Kowalski");
+//                driver2.setRating(4.5f);
+//                drivers.add(driver2);
+
+                drivers = conn.SelectAllDriversToList();
+                id++;
+                if(drivers.isEmpty() || id>=drivers.size()){
+                    //nie znaleziono kierowcy
+                    printNoDriverFound();
+                    return;
+                }
+                driver = drivers.get(id);
+                time = ride.estimateArrivalTime(driver.getDriver_id());
                 printDriverFound(driver.getFirstName(), driver.getLastName(), driver.getRating(), time);
-                //printDriverFound(drivers.get(id).getFirstName(),drivers.get(id).getLastName(), drivers.get(id).getRating(),time);
                 driverFound = -1;
                 while(driverFound!=0 && driverFound!=1 && driverFound!=2){
+                    // 0 - cancel, 1 - ok, 2-find another
                     try {
                         scan = new Scanner(System.in);
                         driverFound = scan.nextInt();
@@ -171,53 +199,34 @@ public class Passenger {
                 //rezygnacja z przejazdu
             }else{
                 //kierowca wybrany
-                ride.setDriver_id(driverId);
+                Car car = conn.SelectOneDriverAndCar(driver.getDriver_id()).get(0).getSecond();
+                //Car car = new Car("plate", "model", "blue",3);
+                ride.setDriver_id(driver.getDriver_id());
                 //czas do pzyjazdu kierowcy
+                printInfoAboutYourDriver(driver.getFirstName(), driver.getLastName(), car.getPlates(), car.getModel(), car.getColor());
                 printTimeToDriverArrival(time);
                 //rozpoczecie przejazdu
 
-                int endOfRide = -1;
-                printChangeOpt();
-                while(endOfRide!=0){
-                    String newDestination = null;
-                    endOfRide = scan.nextInt();
-                    if(endOfRide==9){
-                        endOfRide = -1;
-                        //change destination
-                        printChangeDestinaton();
-                        newDestination = scan.nextLine();
-                        newDestination = scan.nextLine();
-                        //check if distance ok
-                        if(ride.checkDistance(newDestination)){
-                            float newPrice = ride.calculateAdditionalPrice();
-                            if(canIAffordIt(wallet,newPrice)){
-                                ride.setDestination(newDestination);
-                                printDestinationChanged();
-                            }else{
-                                printNotEnoughMoney(newPrice, wallet.getMoney());
-                            }
-                        }else{
-                            printWrongDistance();
-                        }
+                boolean endOfRide = false;
+                int opt;
+                while(!endOfRide){
+                    printChangeOpt();
+                    opt = scan.nextInt();
+                    switch (opt){
+                        case 0:
+                            endOfRide=true;
+                            break;
+                        case 2:
+                            CWallet.WalletMenu(conn,this);
+                            break;
+                        case 9:
+                            changeDestination(ride);
                     }
                 }
 
                 //po zakonczeniu przejazdu
-                printAskForTip();
-                int tip= -1;
-                try {
-                    tip = scan.nextInt();
-                }catch(Exception e){
-                    System.out.println(e.getMessage());
-                }
-                if(tip==1){
-                    printAskHowMuchTip(wallet.getMoney());
-                    float tipAmount = -1;
-                    while(tipAmount<0 || tipAmount>wallet.getMoney()){
-                        tipAmount = scan.nextFloat();
-                    }
-                    wallet.setMoney(wallet.getMoney()-tipAmount);
-                }
+                manageTipping();
+
                 printAskForRating();
                 int driverRating = -1;
                 while(driverRating<0 || driverRating>5){
@@ -233,15 +242,79 @@ public class Passenger {
         }
     }
 
+    public void changeDestination(Ride ride){
+        String newDestination=null;
+        printChangeDestination();
+        Scanner scan = new Scanner(System.in);
+        newDestination = scan.nextLine();
+        //check if distance ok
+        if(ride.checkDistance(newDestination)){
+            float newPrice = ride.calculateAdditionalPrice();
+            if(canIAffordIt(wallet,newPrice)){
+                printShowPrice(newPrice);
+                int acceptNewPrice = 0;
+                try {
+                    acceptNewPrice = scan.nextInt();
+                }catch (Exception e){System.out.println(e.getMessage());}
+                if(acceptNewPrice==1){
+                    ride.setDestination(newDestination);
+                    printDestinationChanged();
+                }
+            }else{
+                printNotEnoughMoney(newPrice, wallet.getMoney());
+            }
+        }else{
+            printWrongDistance();
+        }
+    }
+
+    public void manageTipping(){
+        printAskForTip();
+        int giveTip= -1;
+        Scanner scan = new Scanner(System.in);
+        try {
+            giveTip = scan.nextInt();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        if(giveTip==1){
+            printAskHowMuchTip(wallet.getMoney());
+            float tipAmount = scan.nextFloat();
+            while(tipAmount<0 || tipAmount>wallet.getMoney()){
+                System.out.println("Wrong input. Try again.\n");
+                tipAmount = scan.nextFloat();
+            }
+            wallet.setMoney(Math.round((wallet.getMoney()-tipAmount)*100.0f)/100.0f);
+        }
+    }
+
     public void addFunds(DataBaseConnection conn) {
         printAddFunds();
         float fundsToAdd=0;
+        if(wallet.isCreditCard()){
+            try{
+                Scanner scan = new Scanner(System.in);
+                fundsToAdd = scan.nextFloat();
+                wallet.setMoney(wallet.getMoney()+fundsToAdd);
+                conn.UpdateWalletMoney(wallet.getMoney(), this.passenger_id);
+                printMoneyAdded();
+            }catch(Exception e){System.out.println(e.getMessage());}
+        }else{
+            printNoCreditCard();
+        }
+    }
+
+    public void addCard(DataBaseConnection conn){
+        printAddCard();
+        String cardNr;
+        boolean alreadyHaveCard = this.wallet.isCreditCard();
         try{
             Scanner scan = new Scanner(System.in);
-            fundsToAdd = scan.nextFloat();
-            wallet.setMoney(wallet.getMoney()+fundsToAdd);
-            conn.UpdateWalletMoney(wallet.getMoney(), this.passenger_id);
-            printMoneyAdded();
+            cardNr = scan.nextLine();
+            this.wallet.setCreditCard(true);
+            conn.UpdateWalletCreditCard(this.wallet.isCreditCard(), this.passenger_id);
+            if(!alreadyHaveCard) printCreditCardAdded();
+            else printCreditCardChanged();
         }catch(Exception e){System.out.println(e.getMessage());}
     }
 }
