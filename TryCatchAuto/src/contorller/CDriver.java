@@ -48,12 +48,13 @@ public class CDriver {
         }
     }
     public static void requestEarlierSalary(DataBaseConnection conn,Driver driver){
-        VDriver.printAskForSalary();
         Scanner scanner=new Scanner(System.in);
-        int choice= scanner.nextInt();
-        if(choice==1){
-            VDriver.askForReason();
-            String comment=scanner.nextLine();
+        VDriver.askForReason();
+        String comment=scanner.nextLine();
+        VDriver.printAskForSalary();
+        String choice= scanner.next();
+        if(choice.equals("1")){
+
             ApplicationForEarlierSalary newApplication= new ApplicationForEarlierSalary();
             newApplication.setDescription(comment);
             newApplication.setDate(Date.valueOf(LocalDate.now()));
@@ -129,40 +130,42 @@ public class CDriver {
 //    }
     private static void inWork(DataBaseConnection conn,Driver driver){
         Scanner scanner=new Scanner(System.in);
-        VDriver.printMenuDuringWork();
         //int choice=scanner.nextInt();
-        String choice=scanner.nextLine();
-        if(choice.equals("1")){
 
-        }
-        else if(choice.equals("2")){
-            takeABreak(conn,driver);
-        }
-        else{
-            VDriver.printRideApperead();
-            Ride ride=new Ride(conn);
-            VRide.printRideForDriver(conn,ride);
-            int choice2=scanner.nextInt();
-            if(choice2==1){
-                ride.setDriver_id(driver.getDriver_id());
-                Time startTime=ride.getStartTime();
-                LocalTime tmptime= startTime.toLocalTime();
-                int timeLength=new Random().nextInt(5,20);
-                tmptime=tmptime.plusMinutes(timeLength);
-                ride.setEndTime(Time.valueOf(tmptime));
-                VDriver.askForRating();
-                int passengerRating= scanner.nextInt();
-                while(passengerRating<0 || passengerRating>5){
-                    VDriver.wrongRating();
-                    passengerRating=scanner.nextInt();
+        while(true) {
+            VDriver.printMenuDuringWork();
+            String choice=scanner.next();
+            if (choice.equals("1")) {
+                break;
+            }
+            else if (choice.equals("2")) {
+                takeABreak(conn, driver);
+            } else {
+                Ride ride = new Ride(conn);
+                VDriver.printRideApperead();
+                VRide.printRideForDriver(conn, ride);
+                VDriver.printRideDecision();
+                int choice2 = scanner.nextInt();
+                if (choice2 == 1) {
+                    ride.setDriver_id(driver.getDriver_id());
+                    Time startTime = ride.getStartTime();
+                    LocalTime tmptime = startTime.toLocalTime();
+                    int timeLength = new Random().nextInt(5, 20);
+                    tmptime = tmptime.plusMinutes(timeLength);
+                    ride.setEndTime(Time.valueOf(tmptime));
+                    VDriver.askForRating();
+                    int passengerRating = scanner.nextInt();
+                    while (passengerRating < 0 || passengerRating > 5) {
+                        VDriver.wrongRating();
+                        passengerRating = scanner.nextInt();
+                    }
+                    ride.setRatingForPassenger(passengerRating);
+                    conn.InsertRide(ride);
                 }
-                ride.setRatingForPassenger(passengerRating);
-                conn.InsertRide(ride);
+//            else{
+//                inWork(conn,driver);
+//            }
             }
-            else{
-                inWork(conn,driver);
-            }
-
         }
 
 
@@ -173,7 +176,7 @@ public class CDriver {
         Scanner scanner=new Scanner(System.in);
         scanner.next();
         //driverMenuDuringWork(driver);
-        inWork(conn,driver);
+       // inWork(conn,driver);
     }
     static class TimerTask implements Runnable {
         public void run() {

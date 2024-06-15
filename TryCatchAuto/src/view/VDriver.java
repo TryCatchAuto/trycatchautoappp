@@ -5,7 +5,7 @@ public class VDriver {
     public static void printMenu(){
      System.out.println("Select what you want to do. Your options are:\n" +
              "1. Start work\n" +
-             "2. Account history\n" +
+             "2. Account history  (yet to do)\n" +
              "3. Request earlier payment\n" +
              "0. Log out (Exit application)");
     }
@@ -19,11 +19,13 @@ public class VDriver {
     }
     public static void printRideApperead(){
         System.out.println("""
-                You have an errand available. Do you want to take it?
+                You have an errand available. Do you want to take it?""");
+    }
+
+    public static void printRideDecision(){
+        System.out.println("""
                 1. Yes (Start ride)
-                2. No (Reject ride)          
-                """);
-                //D. Show more details (press D)""");
+                2. No (Reject ride)""");
     }
     public static void askForRating(){
         System.out.println("Rate your passenger (insert number from 1 to 5)");
