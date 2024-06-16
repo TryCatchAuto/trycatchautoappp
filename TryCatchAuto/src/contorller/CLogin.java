@@ -140,13 +140,15 @@ public class CLogin {
         //int choice=1;
         while((id.equals("badLogin")||id.equals("badPassword"))){
             VLogin.wrongData();
-            int choice=scanner.nextInt();
-            if(choice==0){
+            scanner=new Scanner(System.in);
+            String choice=scanner.next();
+            if(choice.equals("0")){
                 break;
             }
             VLogin.printLogin();
-            login=scanner.nextLine();
-            password=scanner.nextLine();
+            login=scanner.next();
+            VLogin.printPassword();
+            password=scanner.next();
             id=Driver.checkLogIn(conn,login,password);
         }
         return id;
