@@ -190,7 +190,6 @@ public class DataBaseConnection {
 
     private static final String SELECT_SQL_ALL_DRIVERS = "SELECT * FROM Driver";
     private static final String SELECT_SQL_BASIC_DATA_DRIVER = "SELECT driver_id, firstName, lastName, rating FROM Driver;";
-
     private static final String SELECT_SQL_BASIC_PASSENGER = "SELECT Passenger.passenger_id, Passenger.firstName, Passenger.lastName,passenger.email, passenger.rating FROM passenger WHERE passenger_id = ?;";
     private static final String SELECT_SQL_BASIC_EMPLOYMENT_STATUS_DATA_DRIVER = "SELECT driver_id, firstName, lastName, rating, employmentStatus FROM Driver;";
     private static final String SELECT_SQL_ALL_DRIVERS_AND_CARS =
