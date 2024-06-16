@@ -10,10 +10,9 @@ import static contorller.CLogin.login_start;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-
-        DataBaseConnection conn = new DataBaseConnection(5432, "postgres", "haslo", "trycatchauto");
-     //   login_start(conn);
-//        AddPassenger();
+        DataBaseConnection conn = new DataBaseConnection(5432, "postgres", "Strz3l3czhr-SQL", "trycatchauto");
+        while(true){if(login_start(conn)) break;};
+        //        AddPassenger();
 //        AddDriverWithCar(
 //                "TEST_NAME",
 //                "TEST_LAST_NAME",
@@ -152,7 +151,7 @@ public class Main {
         driver.setEmploymentStatus(Test_Employment_Status);
 
         Car car = new Car(TEST_REJESTRACJA,TEST_MODEL, TEST_COLOR, TEST_SETAS);
-        DataBaseConnection conn = new DataBaseConnection("haslo", "trycatchauto");
+        DataBaseConnection conn = new DataBaseConnection("2hY76r", "trycatchauto");
         conn.InsertDriverWithCar(driver, car);
     }
 
@@ -163,7 +162,7 @@ public class Main {
         passenger.setEmail("test@test.com");
         passenger.setLogin("Test_Login");
         passenger.setPassword("Test_Password");
-        DataBaseConnection conn = new DataBaseConnection("haslo", "trycatchauto");
+        DataBaseConnection conn = new DataBaseConnection("2hY76r", "trycatchauto");
         conn.InsertPassenger(passenger);
     }
     private static void AddEmployee() throws SQLException {
@@ -176,7 +175,7 @@ public class Main {
         employee.setJobTitle("Test_JobTitle");
 
 
-        DataBaseConnection conn = new DataBaseConnection("haslo", "trycatchauto");
+        DataBaseConnection conn = new DataBaseConnection("2hY76r", "trycatchauto");
         conn.InsertManagementEmployee(employee);
     }
     private static void AddRide(String driver_id, String passenger_id) throws SQLException {
@@ -195,7 +194,7 @@ public class Main {
         ride.setDriver_id(driver_id);
         ride.setRatingForPassenger(4.5f);
         ride.setRatingForDriver(4.5f);
-        DataBaseConnection conn = new DataBaseConnection("haslo", "trycatchauto");
+        DataBaseConnection conn = new DataBaseConnection("2hY76r", "trycatchauto");
         conn.InsertRide(ride);
     }
     private static void AddRide(String driver_id, String passenger_id, float rating_pass, float rating_dr) throws SQLException {
@@ -215,7 +214,7 @@ public class Main {
         ride.setRatingForPassenger(rating_pass);
         ride.setRatingForDriver(rating_dr);
 
-        DataBaseConnection conn = new DataBaseConnection("haslo", "trycatchauto");
+        DataBaseConnection conn = new DataBaseConnection("2hY76r", "trycatchauto");
         conn.InsertRide(ride);
     }
     private static void AddComplaint() throws SQLException {
@@ -226,7 +225,7 @@ public class Main {
         complaint.setRide_id("RiD100009");
         complaint.setDriver_id("DR_3004_V");
         complaint.setEmployee_id("MG_4");
-        DataBaseConnection conn = new DataBaseConnection("haslo", "trycatchauto");
+        DataBaseConnection conn = new DataBaseConnection("2hY76r", "trycatchauto");
         conn.InsertComplaint(complaint);
     }
     private static void AddApplication() throws SQLException {
@@ -236,7 +235,7 @@ public class Main {
         application.setEmployee_id("MG_4");
         application.setDescription("Test_Description");
         application.setDate(DataBaseConnection.DateAndTime.GetCurrentDate());
-        DataBaseConnection conn = new DataBaseConnection("haslo", "trycatchauto");
+        DataBaseConnection conn = new DataBaseConnection("2hY76r", "trycatchauto");
         conn.InsertApplicationForEarlierSalary(application);
     }
 
