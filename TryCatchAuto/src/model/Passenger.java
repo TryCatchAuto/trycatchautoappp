@@ -2,6 +2,7 @@ package model;
 
 import contorller.CWallet;
 
+import javax.xml.crypto.Data;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -237,7 +238,7 @@ public class Passenger {
                 //po zakonczeniu przejazdu
                 ride.setEndTime(Time.valueOf(LocalTime.now()));
                 ride.setRideLength(ride.calculateLength());
-                manageTipping();
+                manageTipping(conn, driver);
 
                 printAskForRating();
                 int driverRating = -1;
@@ -284,7 +285,7 @@ public class Passenger {
         return false;
     }
 
-    public void manageTipping(){
+    public void manageTipping(DataBaseConnection conn, Driver driver){
         printAskForTip();
         int giveTip= -1;
         Scanner scan = new Scanner(System.in);
@@ -301,6 +302,8 @@ public class Passenger {
                 tipAmount = scan.nextFloat();
             }
             wallet.setMoney(Math.round((wallet.getMoney()-tipAmount)*100.0f)/100.0f);
+            driver.setSalary(Math.round((driver.getSalary()+tipAmount)*100.0f)/100.0f);
+            conn.UpdateSalaryDriver(driver.getSalary(), driver.getDriver_id());
         }
     }
 
@@ -311,7 +314,7 @@ public class Passenger {
             try{
                 Scanner scan = new Scanner(System.in);
                 fundsToAdd = scan.nextFloat();
-                wallet.setMoney(wallet.getMoney()+fundsToAdd);
+                wallet.setMoney(Math.round((wallet.getMoney()+fundsToAdd)*100.0f)/100.0f);
                 conn.UpdateWalletMoney(wallet.getMoney(), this.passenger_id);
                 printMoneyAdded();
             }catch(Exception e){System.out.println(e.getMessage());}

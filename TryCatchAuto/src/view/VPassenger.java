@@ -35,7 +35,9 @@ public class VPassenger {
         System.out.println("Driver info: ");
         System.out.println("Name: " + name + " " + lastName);
         System.out.println("Car info: ");
-        System.out.println("Car plate: " + carPlate + " Car model: " + carModel + " Car color: " + carColor + "\n");
+        System.out.println("Car plate: " + carPlate +
+                "\nCar model: " + carModel +
+                "\nCar color: " + carColor + "\n");
     }
     public static void printTimeToDriverArrival(int time){
         System.out.println("Your driver will be in pickup spot in: " + String.valueOf(time) + " minutes.\n");
