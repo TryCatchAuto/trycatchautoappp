@@ -80,63 +80,9 @@ public class CDriver {
         }
     }
 
-//    public static void driverMenuDuringWork(Driver driver){
-//        VDriver.printMenuDuringWork();
-//        Random random = new Random();
-//        Scanner scanner = new Scanner(System.in);
-//        AtomicBoolean running = new AtomicBoolean(true);
-//        AtomicReference<String> choice= new AtomicReference<>("");
-//        // Wątek losujący liczby
-//        Thread numberThread = new Thread(() -> {
-//            while (running.get()) {
-//                int number = random.nextInt(10) + 1;
-//                if (number >= 6) {
-//                    VDriver.printRideApperead();
-//                    choice.set(scanner.nextLine());
-//                }
-//                try {
-//                    Thread.sleep(5000); // Odczekanie 5 sekund
-//                } catch (InterruptedException e) {
-//                    Thread.currentThread().interrupt();
-//                    System.out.println("Wątek został przerwany");
-//                }
-//            }
-//        });
-//
-//        // Wątek obsługujący wejście użytkownika
-//        Thread inputThread = new Thread(() -> {
-//            while (running.get()) {
-//                if (scanner.nextLine().equals("1")) {
-//                    running.set(false);
-//                }
-//                else if(scanner.nextLine().equals("2")){
-//                    running.set(false);
-//                    takeABreak(driver);
-//                } else if (choice.get().equals("Y")) {
-//                    running.set(false);
-//
-//                }
-//            }
-//        });
-//
-//        // Uruchomienie wątków
-//        numberThread.start();
-//        inputThread.start();
-//
-//        try {
-//            numberThread.join();
-//            inputThread.join();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//
-//        System.out.println("Program zakończony.");
-//        scanner.close();
-//    }
+
     private static void inWork(DataBaseConnection conn,Driver driver){
         Scanner scanner=new Scanner(System.in);
-        //int choice=scanner.nextInt();
-
         while(true) {
             VDriver.printMenuDuringWork();
             String choice=scanner.next();
@@ -166,10 +112,9 @@ public class CDriver {
                     }
                     ride.setRatingForPassenger(passengerRating);
                     conn.InsertRide(ride);
+                    conn.UpdateRatingForPassenger();
                 }
-//            else{
-//                inWork(conn,driver);
-//            }
+
             }
         }
 
