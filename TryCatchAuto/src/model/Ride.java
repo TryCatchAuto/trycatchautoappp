@@ -30,6 +30,7 @@ public class Ride {
         //metoda Bartka do zczytania ID pasażerów z Bazy Danych
         Random random=new Random();
         String id= listOfPassengersID.get(random.nextInt(listOfPassengersID.size()));
+        passenger_id=id;
         String[]adresses={"aleja Niepodległości 36","Nabrzeże Celne","Kopalniana 1","Andrzeja Struga 42","al. Wyzwolenia 18","Brama Portowa","ul. Żołnierska 49 Szczecin","al. Wojska Polskiego 15","ul. Witkiewicza 20","Kaliny 17"};
         pick_up=adresses[random.nextInt(adresses.length)];
         destination=adresses[random.nextInt(adresses.length)];
