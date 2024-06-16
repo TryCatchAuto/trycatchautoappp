@@ -215,7 +215,7 @@ public class CManagement {
         while(true) {
             System.out.println("Are you sure you want to Add Driver with this car? (y/n)");
             if (sc.nextLine().equals("y")) {
-                conn.InsertDriverWithCar(driver,driverCar);
+                conn.InsertDriverWithCarWithAutoLogin(driver,driverCar);
                 System.out.print("Driver Added Successfully");
                 break;
             }else if (sc.nextLine().equals("n")) {
