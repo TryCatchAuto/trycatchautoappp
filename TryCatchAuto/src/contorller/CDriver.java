@@ -57,10 +57,10 @@ public class CDriver {
         if(choice.equals("1")){
 
             ApplicationForEarlierSalary newApplication= new ApplicationForEarlierSalary();
-//            List<String> employeesIDs=conn.SelectAllEmployeesID();
-//            String employeeID= employeesIDs.get(new Random().nextInt(employeesIDs.size()));
-//            newApplication.setEmployee_id(employeeID);
-            newApplication.setEmployee_id(conn.SelectAllEmployeesID().get(new Random().nextInt(conn.SelectAllEmployeesID().size())));
+            List<String> employeesIDs=conn.SelectAllEmployeesID();
+            String employeeID= employeesIDs.get(new Random().nextInt(employeesIDs.size()));
+            newApplication.setEmployee_id(employeeID);
+            //newApplication.setEmployee_id(conn.SelectAllEmployeesID().get(new Random().nextInt(conn.SelectAllEmployeesID().size())));
             newApplication.setDescription(comment);
             newApplication.setDate(Date.valueOf(LocalDate.now()));
             newApplication.setDriver_id(driver.getDriver_id());
