@@ -71,13 +71,13 @@ public class Complaint {
      * prints all information about complaint to std out
      */
     public void printComplaint() {
-        System.out.print("Complaint ID: " + complaint_id+"  ");
-        System.out.print("Description: " + description +"  ");
-        System.out.print("Date: " + date +"  ");
-        System.out.print("Status: " + status +"  ");
-        System.out.print("Ride ID: " + ride_id +"  ");
-        System.out.print("Driver ID: " + driver_id +"  ");
-        System.out.print("Employee ID: " + employee_id +"  ");
+        System.out.println("Complaint ID: " + complaint_id+"  ");
+        System.out.println("Description: " + description +"  ");
+        System.out.println("Date: " + date +"  ");
+        System.out.println("Status: " + status +"  ");
+        System.out.println("Ride ID: " + ride_id +"  ");
+        System.out.println("Driver ID: " + driver_id +"  ");
+        System.out.println("Employee ID: " + employee_id +"  ");
         System.out.println();
     }
 

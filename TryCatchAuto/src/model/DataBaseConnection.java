@@ -223,6 +223,7 @@ public class DataBaseConnection {
     private static final String SELECT_SQL_PASSWORD_MANAGEMENT = "SELECT management.password, management.employee_id FROM management WHERE management.login = ?;";
     private static final String SELECT_SQL_ALL_DATA_MANAGEMENT = "SELECT Management.firstName,Management.lastName,Management.email,Management.login,Management.password,Management.jobTitle FROM Management WHERE Management.employee_id = ?;";
     private static final String SELECT_SQL_ALL_ID_PASSENGERS = "SELECT passenger_id FROM Passenger;";
+    private static final String SELECT_SQL_ALL_ID_EMPLOYEES = "SELECT employee_id FROM Management;";
     private static final String SELECT_SQL_WALLET_DATA = "SELECT wallet.wallet_id, money, creditCard FROM wallet JOIN passenger ON wallet.wallet_id = passenger.wallet_id WHERE passenger_id = ?;";
 
 
@@ -1053,6 +1054,28 @@ public class DataBaseConnection {
         }
         System.out.println(goodResult);
         return goodResult;
+    }
+
+
+    //------------------------------------------------------------------------------
+    // returns: id from all employees
+
+    public List<String> SelectAllEmployeesID() {
+        List<String> resultList = new ArrayList<>();
+        try (Connection con = getConnection()) {
+            try (PreparedStatement preparedStatement = con.prepareStatement(SELECT_SQL_ALL_ID_EMPLOYEES)) {
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()) {
+                    resultList.add(rs.getString(1));
+                }
+                rs.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultList;
     }
 
 

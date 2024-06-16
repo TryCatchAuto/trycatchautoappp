@@ -26,7 +26,8 @@ public class CLogin {
      *
      * @param conn database connection for interaction with DB
      */
-    public static void login_start(DataBaseConnection conn){
+    public static boolean login_start(DataBaseConnection conn){
+        boolean exit=false;
         Scanner scanner=new Scanner(System.in);
         start_login();
         int choice;
@@ -116,16 +117,18 @@ public class CLogin {
                              break;
                          default:
                              CManagement.menu(conn,checkResult);
+                             flag=false;
                              break;
 
                      }
                  }
                  break;
-             case 4: //to do
+             case 4: exit=true;
                  break;
              default:
                 throw new RuntimeException("something went very bad");
         }
+        return exit;
     }
     private static String loginDriver(DataBaseConnection conn){
         Scanner scanner=new Scanner(System.in);
@@ -137,13 +140,15 @@ public class CLogin {
         //int choice=1;
         while((id.equals("badLogin")||id.equals("badPassword"))){
             VLogin.wrongData();
-            int choice=scanner.nextInt();
-            if(choice==0){
+            scanner=new Scanner(System.in);
+            String choice=scanner.next();
+            if(choice.equals("0")){
                 break;
             }
             VLogin.printLogin();
-            login=scanner.nextLine();
-            password=scanner.nextLine();
+            login=scanner.next();
+            VLogin.printPassword();
+            password=scanner.next();
             id=Driver.checkLogIn(conn,login,password);
         }
         return id;
