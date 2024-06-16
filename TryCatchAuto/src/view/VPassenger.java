@@ -5,64 +5,69 @@ public class VPassenger {
         System.out.println("0. Exit.");
         System.out.println("1. Order a ride.");
         System.out.println("2. Manage your wallet.");
-        System.out.println("3. Show history.");
+        System.out.println("3. Show history.\n");
     }
     public static void printGiveDestination(){
-        System.out.println("Enter destination.");
+        System.out.println("Enter destination.\n");
     }
     public static void printGiveLocation(){
-        System.out.println("Enter pickup location.");
+        System.out.println("Enter pickup location.\n");
     }
     public static void printGiveNOfPeople(){
-        System.out.println("How many passengers (1,4).");
+        System.out.println("How many passengers (1,4).\n");
     }
     public static void printShowPrice(float price){
         System.out.println("Price of the ride: " + String.valueOf(price) + " zl.");
-        System.out.println("To accept choose 1, to cancel press 0");
+        System.out.println("To accept choose 1, to cancel press 0.\n");
     }
     public static void printLookingForDriver(){
-        System.out.println("Looking for available driver...");
+        System.out.println("Looking for available driver...\n");
     }
-    public static void printNoDriverFound(){System.out.println("Can't find a driver. Try again later.");}
+    public static void printNoDriverFound(){System.out.println("Can't find a driver. Try again later.\n");}
     public static void printDriverFound(String name,String lastName, float rating, int time){
         System.out.println("Driver has been found.");
         System.out.println("Driver info: " + name + " " + lastName + " rating: " + String.valueOf(rating));
         System.out.println("Estimated time of your driver arrival: " + String.valueOf(time) + " minutes");
         System.out.println("To accept press 1. To find another driver press 2.");
-        System.out.println("To cancel your ride press 0.");
+        System.out.println("To cancel your ride press 0.\n");
     }
     public static void printInfoAboutYourDriver(String name,String lastName, String carPlate, String carModel, String carColor){
         System.out.println("Driver info: ");
         System.out.println("Name: " + name + " " + lastName);
         System.out.println("Car info: ");
-        System.out.println("Car plate: " + carPlate + " Car model: " + carModel + " Car color: " + carColor);
+        System.out.println("Car plate: " + carPlate +
+                "\nCar model: " + carModel +
+                "\nCar color: " + carColor + "\n");
     }
     public static void printTimeToDriverArrival(int time){
-        System.out.println("Your driver will be in pickup spot in: " + String.valueOf(time) + " minutes");
+        System.out.println("Your driver will be in pickup spot in: " + String.valueOf(time) + " minutes.\n");
     }
     public static void printAskForTip(){
-        System.out.println("Would you like to tip your driver?  1 - YES, 0 - NO");
+        System.out.println("Would you like to tip your driver?  1 - YES, 0 - NO\n");
     }
     public static void printAskHowMuchTip(float money){
-        System.out.println("Insert tip. Currently you have: " + String.valueOf(money) + " zl.");
+        System.out.println("Insert tip. Currently you have: " + String.valueOf(money) + " zl.\n");
     }
     public static void printAskForRating(){
-        System.out.println("Rate your driver (insert number from 1 to 5)");
+        System.out.println("Rate your driver (insert number from 1 to 5)\n");
     }
     public static void printNotEnoughMoney(float price, float money){
         System.out.println("Not enough money in your wallet. Currently you have: " + String.valueOf(money) + " zl.");
-        System.out.println("Price of the ride is " + String.valueOf(price) + " zl.");
+        System.out.println("Price of the ride is " + String.valueOf(price) + " zl.\n");
     }
     public static void printChangeOpt(){
-        System.out.println("If you want to change destination press 9. (To end ride press 0.)");
+        System.out.println("If you want to change destination press 9.\n" +
+                "To manage you wallet press 2.\n" +
+                "(To end ride press 0.)\n");
     }
     public static void printChangeDestination(){
-        System.out.println("Input new destination.");
+        System.out.println("Input new destination.\n");
     }
     public static void printWrongDistance(){
-        System.out.println("New destination does not meet the required conditions.");
+        System.out.println("New destination does not meet the required conditions.\n");
     }
     public static void printDestinationChanged(){
         System.out.println("Destination has been changed.");
     }
+    public static void printOneDestinationChangePerRide(){System.out.println("Destination can be changed only once per ride.\n");}
 }

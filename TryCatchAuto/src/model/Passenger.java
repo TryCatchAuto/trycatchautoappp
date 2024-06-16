@@ -2,6 +2,11 @@ package model;
 
 import contorller.CWallet;
 
+import javax.xml.crypto.Data;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -206,6 +211,9 @@ public class Passenger {
                 printInfoAboutYourDriver(driver.getFirstName(), driver.getLastName(), car.getPlates(), car.getModel(), car.getColor());
                 printTimeToDriverArrival(time);
                 //rozpoczecie przejazdu
+                boolean destChanged = false;
+                ride.setDate(Date.valueOf(LocalDate.now()));
+                ride.setStartTime(Time.valueOf(LocalTime.now()));
 
                 boolean endOfRide = false;
                 int opt;
@@ -220,12 +228,17 @@ public class Passenger {
                             CWallet.WalletMenu(conn,this);
                             break;
                         case 9:
-                            changeDestination(ride);
+                            if(!destChanged)
+                                destChanged = changeDestination(ride);
+                            else
+                                printOneDestinationChangePerRide();
                     }
                 }
 
                 //po zakonczeniu przejazdu
-                manageTipping();
+                ride.setEndTime(Time.valueOf(LocalTime.now()));
+                ride.setRideLength(ride.calculateLength());
+                manageTipping(conn, driver);
 
                 printAskForRating();
                 int driverRating = -1;
@@ -233,6 +246,7 @@ public class Passenger {
                     driverRating=scan.nextInt();
                 }
                 ride.setRatingForDriver(driverRating);
+                ride.setRatingForPassenger(-1);
                 //update database
                 conn.UpdateWalletMoney(wallet.getMoney(), this.passenger_id);
                 conn.UpdateRatingForDriver();
@@ -242,7 +256,7 @@ public class Passenger {
         }
     }
 
-    public void changeDestination(Ride ride){
+    public boolean changeDestination(Ride ride){
         String newDestination=null;
         printChangeDestination();
         Scanner scan = new Scanner(System.in);
@@ -258,7 +272,9 @@ public class Passenger {
                 }catch (Exception e){System.out.println(e.getMessage());}
                 if(acceptNewPrice==1){
                     ride.setDestination(newDestination);
+                    wallet.setMoney(Math.round((wallet.getMoney()-newPrice)*100.0f)/100.0f);
                     printDestinationChanged();
+                    return true;
                 }
             }else{
                 printNotEnoughMoney(newPrice, wallet.getMoney());
@@ -266,9 +282,10 @@ public class Passenger {
         }else{
             printWrongDistance();
         }
+        return false;
     }
 
-    public void manageTipping(){
+    public void manageTipping(DataBaseConnection conn, Driver driver){
         printAskForTip();
         int giveTip= -1;
         Scanner scan = new Scanner(System.in);
@@ -285,6 +302,8 @@ public class Passenger {
                 tipAmount = scan.nextFloat();
             }
             wallet.setMoney(Math.round((wallet.getMoney()-tipAmount)*100.0f)/100.0f);
+            driver.setSalary(Math.round((driver.getSalary()+tipAmount)*100.0f)/100.0f);
+            conn.UpdateSalaryDriver(driver.getSalary(), driver.getDriver_id());
         }
     }
 
@@ -295,7 +314,7 @@ public class Passenger {
             try{
                 Scanner scan = new Scanner(System.in);
                 fundsToAdd = scan.nextFloat();
-                wallet.setMoney(wallet.getMoney()+fundsToAdd);
+                wallet.setMoney(Math.round((wallet.getMoney()+fundsToAdd)*100.0f)/100.0f);
                 conn.UpdateWalletMoney(wallet.getMoney(), this.passenger_id);
                 printMoneyAdded();
             }catch(Exception e){System.out.println(e.getMessage());}

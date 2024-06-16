@@ -44,7 +44,6 @@ public class Ride {
         this.destination = destination;
         this.pick_up = pick_up;
         this.passenger_id = passenger_id;
-        this.date = Date.valueOf(LocalDate.now());
     }
 
     public java.sql.Date getDate() {
@@ -160,6 +159,13 @@ public class Ride {
     public float calculateAdditionalPrice() {
         Random rd = new Random();
         double min = 1;
+        double max = 15;
+        double random = min + rd.nextDouble() * (max - min);
+        return Math.round(random*100.0f)/100.0f;
+    }
+    public float calculateLength(){
+        Random rd = new Random();
+        double min = 3;
         double max = 15;
         double random = min + rd.nextDouble() * (max - min);
         return Math.round(random*100.0f)/100.0f;
