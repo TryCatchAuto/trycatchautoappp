@@ -2,6 +2,10 @@ package model;
 
 import contorller.CWallet;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -206,6 +210,9 @@ public class Passenger {
                 printInfoAboutYourDriver(driver.getFirstName(), driver.getLastName(), car.getPlates(), car.getModel(), car.getColor());
                 printTimeToDriverArrival(time);
                 //rozpoczecie przejazdu
+                boolean destChanged = false;
+                ride.setDate(Date.valueOf(LocalDate.now()));
+                ride.setStartTime(Time.valueOf(LocalTime.now()));
 
                 boolean endOfRide = false;
                 int opt;
@@ -220,11 +227,16 @@ public class Passenger {
                             CWallet.WalletMenu(conn,this);
                             break;
                         case 9:
-                            changeDestination(ride);
+                            if(!destChanged)
+                                destChanged = changeDestination(ride);
+                            else
+                                printOneDestinationChangePerRide();
                     }
                 }
 
                 //po zakonczeniu przejazdu
+                ride.setEndTime(Time.valueOf(LocalTime.now()));
+                ride.setRideLength(ride.calculateLength());
                 manageTipping();
 
                 printAskForRating();
@@ -233,6 +245,7 @@ public class Passenger {
                     driverRating=scan.nextInt();
                 }
                 ride.setRatingForDriver(driverRating);
+                ride.setRatingForPassenger(-1);
                 //update database
                 conn.UpdateWalletMoney(wallet.getMoney(), this.passenger_id);
                 conn.UpdateRatingForDriver();
@@ -242,7 +255,7 @@ public class Passenger {
         }
     }
 
-    public void changeDestination(Ride ride){
+    public boolean changeDestination(Ride ride){
         String newDestination=null;
         printChangeDestination();
         Scanner scan = new Scanner(System.in);
@@ -258,7 +271,9 @@ public class Passenger {
                 }catch (Exception e){System.out.println(e.getMessage());}
                 if(acceptNewPrice==1){
                     ride.setDestination(newDestination);
+                    wallet.setMoney(Math.round((wallet.getMoney()-newPrice)*100.0f)/100.0f);
                     printDestinationChanged();
+                    return true;
                 }
             }else{
                 printNotEnoughMoney(newPrice, wallet.getMoney());
@@ -266,6 +281,7 @@ public class Passenger {
         }else{
             printWrongDistance();
         }
+        return false;
     }
 
     public void manageTipping(){
