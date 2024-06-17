@@ -228,7 +228,7 @@ public class DataBaseConnection {
 
 
     private static final String UPDATE_SQL_WALLET = "UPDATE Wallet SET creditCard = ? WHERE wallet_id IN (SELECT wallet_id FROM Passenger WHERE passenger_id = ?);";
-    private static final String UPDATE_SQL_MONEY_WALLET = "UPDATE Wallet SET money = money + ? WHERE wallet_id IN (SELECT wallet_id FROM Passenger WHERE passenger_id = ?);";
+    private static final String UPDATE_SQL_MONEY_WALLET = "UPDATE Wallet SET money = ? WHERE wallet_id IN (SELECT wallet_id FROM Passenger WHERE passenger_id = ?);";
     private static final String UPDATE_SQL_STATUS_COMPLAINT = "UPDATE Complaint SET status = ? WHERE complaint_id = ?;";
     private static final String UPDATE_SQL_RATING_DRIVER = "UPDATE Driver SET rating = (\n SELECT ROUND(COALESCE(AVG(Ride.ratingForDriver), 0.0))\n FROM Ride \n WHERE Driver.driver_id = Ride.driver_id\n);";
     private static final String UPDATE_SQL_RATING_PASSENGER = "UPDATE Passenger SET rating = (SELECT ROUND(COALESCE(AVG(Ride.ratingForPassenger), 0.0)) FROM Ride WHERE Passenger.passenger_id = Ride.passenger_id);";
