@@ -17,7 +17,7 @@ public class VPassenger {
         System.out.println("How many passengers (1,4).\n");
     }
     public static void printShowPrice(float price){
-        System.out.println("Price of the ride: " + String.valueOf(price) + " zl.");
+        System.out.printf("Price of the ride: %.2f zl\n", price);
         System.out.println("To accept choose 1, to cancel press 0.\n");
     }
     public static void printLookingForDriver(){
@@ -46,18 +46,18 @@ public class VPassenger {
         System.out.println("Would you like to tip your driver?  1 - YES, 0 - NO\n");
     }
     public static void printAskHowMuchTip(float money){
-        System.out.println("Insert tip. Currently you have: " + String.valueOf(money) + " zl.\n");
+        System.out.printf("Insert tip. Currently you have: %.2f zl.\n\n", money);
     }
     public static void printAskForRating(){
-        System.out.println("Rate your driver (insert number from 1 to 5)\n");
+        System.out.println("Rate your driver (insert number from 1 to 5).\n");
     }
     public static void printNotEnoughMoney(float price, float money){
-        System.out.println("Not enough money in your wallet. Currently you have: " + String.valueOf(money) + " zl.");
-        System.out.println("Price of the ride is " + String.valueOf(price) + " zl.\n");
+        System.out.printf("Not enough money in your wallet. Currently you have: %.2f zl.\n", money);
+        System.out.printf("Price of the ride is %.2f zl.\n\n", price);
     }
     public static void printChangeOpt(){
         System.out.println("If you want to change destination press 9.\n" +
-                "To manage you wallet press 2.\n" +
+                "If you want to manage your wallet press 2.\n" +
                 "(To end ride press 0.)\n");
     }
     public static void printChangeDestination(){
@@ -67,7 +67,7 @@ public class VPassenger {
         System.out.println("New destination does not meet the required conditions.\n");
     }
     public static void printDestinationChanged(){
-        System.out.println("Destination has been changed.");
+        System.out.println("Destination has been changed.\n");
     }
     public static void printOneDestinationChangePerRide(){System.out.println("Destination can be changed only once per ride.\n");}
 }

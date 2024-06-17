@@ -16,5 +16,5 @@ public class VWallet {
     public static void printAddCard(){System.out.println("Enter card number.\n");}
     public static void printCreditCardAdded(){System.out.println("Your credit card has been added to your wallet.\n");}
     public static void printCreditCardChanged(){System.out.println("Your credit cart has been changed.\n");}
-    public static void printYourMoney(float money){System.out.println("Currently you have: " + String.valueOf(money)  + " zl.\n" );}
+    public static void printYourMoney(float money){System.out.printf("Currently you have:  %.2f zl.\n\n", money );}
 }
